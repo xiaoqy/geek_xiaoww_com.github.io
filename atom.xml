@@ -18,8 +18,8 @@
   
   <entry>
     <title>Centos 7.6 源码编译安装 MariaDB 10.5.9</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20MariaDB%2010.5.9/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20MariaDB%2010.5.9/</id>
+    <link href="https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20MariaDB%2010.5.9/"/>
+    <id>https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20MariaDB%2010.5.9/</id>
     <published>2025-04-26T09:43:24.424Z</published>
     <updated>2025-05-31T17:32:55.459Z</updated>
     
@@ -47,8 +47,8 @@
   
   <entry>
     <title>Centos 7.6 源码编译安装 GCC 10.3.0</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20GCC%2010.3.0/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20GCC%2010.3.0/</id>
+    <link href="https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20GCC%2010.3.0/"/>
+    <id>https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20GCC%2010.3.0/</id>
     <published>2025-04-26T09:43:24.418Z</published>
     <updated>2025-05-31T17:32:38.179Z</updated>
     
@@ -76,8 +76,8 @@
   
   <entry>
     <title>Centos7编译安装LNMP</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/Centos%207%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20LNMP/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/Centos%207%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20LNMP/</id>
+    <link href="https://mirror.geek.xiaoww.com/Centos%207%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20LNMP/"/>
+    <id>https://mirror.geek.xiaoww.com/Centos%207%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20LNMP/</id>
     <published>2025-04-26T09:43:24.414Z</published>
     <updated>2025-05-31T17:32:03.866Z</updated>
     
@@ -102,8 +102,8 @@
   
   <entry>
     <title>BBR一键安装脚本 BBR魔改暴力BBRplus锐速(Lotsever)</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/BBR%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%20BBR%E9%AD%94%E6%94%B9%E6%9A%B4%E5%8A%9BBBRplus%E9%94%90%E9%80%9F(Lotsever)/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/BBR%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%20BBR%E9%AD%94%E6%94%B9%E6%9A%B4%E5%8A%9BBBRplus%E9%94%90%E9%80%9F(Lotsever)/</id>
+    <link href="https://mirror.geek.xiaoww.com/BBR%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%20BBR%E9%AD%94%E6%94%B9%E6%9A%B4%E5%8A%9BBBRplus%E9%94%90%E9%80%9F(Lotsever)/"/>
+    <id>https://mirror.geek.xiaoww.com/BBR%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%20BBR%E9%AD%94%E6%94%B9%E6%9A%B4%E5%8A%9BBBRplus%E9%94%90%E9%80%9F(Lotsever)/</id>
     <published>2025-04-26T09:43:24.411Z</published>
     <updated>2025-05-31T17:39:04.405Z</updated>
     
@@ -126,8 +126,8 @@
   
   <entry>
     <title>如何为typecho站点设置多个域名</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/%E5%A6%82%E4%BD%95%E4%B8%BAtypecho%E7%AB%99%E7%82%B9%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/%E5%A6%82%E4%BD%95%E4%B8%BAtypecho%E7%AB%99%E7%82%B9%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D/</id>
+    <link href="https://mirror.geek.xiaoww.com/%E5%A6%82%E4%BD%95%E4%B8%BAtypecho%E7%AB%99%E7%82%B9%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D/"/>
+    <id>https://mirror.geek.xiaoww.com/%E5%A6%82%E4%BD%95%E4%B8%BAtypecho%E7%AB%99%E7%82%B9%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D/</id>
     <published>2025-04-26T09:43:24.408Z</published>
     <updated>2025-04-26T16:44:18.403Z</updated>
     
@@ -149,8 +149,8 @@
   
   <entry>
     <title>利用oh-my-zsh打造漂亮的终端</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/%E5%88%A9%E7%94%A8oh-my-zsh%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E7%BB%88%E7%AB%AF/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/%E5%88%A9%E7%94%A8oh-my-zsh%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E7%BB%88%E7%AB%AF/</id>
+    <link href="https://mirror.geek.xiaoww.com/%E5%88%A9%E7%94%A8oh-my-zsh%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E7%BB%88%E7%AB%AF/"/>
+    <id>https://mirror.geek.xiaoww.com/%E5%88%A9%E7%94%A8oh-my-zsh%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E7%BB%88%E7%AB%AF/</id>
     <published>2025-04-26T09:43:24.401Z</published>
     <updated>2025-04-26T16:44:09.627Z</updated>
     
@@ -172,8 +172,8 @@
   
   <entry>
     <title>电脑上收看传统电视频道：potplayer + iptv 源</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/%E7%94%B5%E8%84%91%E4%B8%8A%E6%94%B6%E7%9C%8B%E4%BC%A0%E7%BB%9F%E7%94%B5%E8%A7%86%E9%A2%91%E9%81%93%EF%BC%9Apotplayer%20+%20iptv%20%E6%BA%90/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/%E7%94%B5%E8%84%91%E4%B8%8A%E6%94%B6%E7%9C%8B%E4%BC%A0%E7%BB%9F%E7%94%B5%E8%A7%86%E9%A2%91%E9%81%93%EF%BC%9Apotplayer%20+%20iptv%20%E6%BA%90/</id>
+    <link href="https://mirror.geek.xiaoww.com/%E7%94%B5%E8%84%91%E4%B8%8A%E6%94%B6%E7%9C%8B%E4%BC%A0%E7%BB%9F%E7%94%B5%E8%A7%86%E9%A2%91%E9%81%93%EF%BC%9Apotplayer%20+%20iptv%20%E6%BA%90/"/>
+    <id>https://mirror.geek.xiaoww.com/%E7%94%B5%E8%84%91%E4%B8%8A%E6%94%B6%E7%9C%8B%E4%BC%A0%E7%BB%9F%E7%94%B5%E8%A7%86%E9%A2%91%E9%81%93%EF%BC%9Apotplayer%20+%20iptv%20%E6%BA%90/</id>
     <published>2025-04-26T09:43:24.398Z</published>
     <updated>2025-05-31T20:07:19.791Z</updated>
     
@@ -192,8 +192,8 @@
   
   <entry>
     <title>WordPress – 站点底部显示站点运行时间</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/WordPress%20%E2%80%93%20%E7%AB%99%E7%82%B9%E5%BA%95%E9%83%A8%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/WordPress%20%E2%80%93%20%E7%AB%99%E7%82%B9%E5%BA%95%E9%83%A8%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/</id>
+    <link href="https://mirror.geek.xiaoww.com/WordPress%20%E2%80%93%20%E7%AB%99%E7%82%B9%E5%BA%95%E9%83%A8%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/"/>
+    <id>https://mirror.geek.xiaoww.com/WordPress%20%E2%80%93%20%E7%AB%99%E7%82%B9%E5%BA%95%E9%83%A8%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/</id>
     <published>2025-04-26T09:43:24.392Z</published>
     <updated>2025-04-26T16:44:01.762Z</updated>
     
@@ -213,8 +213,8 @@
   
   <entry>
     <title>VIM 分屏基本操作</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/VIM%20%E5%88%86%E5%B1%8F%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/VIM%20%E5%88%86%E5%B1%8F%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</id>
+    <link href="https://mirror.geek.xiaoww.com/VIM%20%E5%88%86%E5%B1%8F%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>https://mirror.geek.xiaoww.com/VIM%20%E5%88%86%E5%B1%8F%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</id>
     <published>2025-04-26T09:43:24.389Z</published>
     <updated>2025-04-26T16:43:52.363Z</updated>
     
@@ -233,8 +233,8 @@
   
   <entry>
     <title>U盘修复 Kali Linux grub引导</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/U%E7%9B%98%E4%BF%AE%E5%A4%8D%20Kali%20Linux%20grub%E5%BC%95%E5%AF%BC/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/U%E7%9B%98%E4%BF%AE%E5%A4%8D%20Kali%20Linux%20grub%E5%BC%95%E5%AF%BC/</id>
+    <link href="https://mirror.geek.xiaoww.com/U%E7%9B%98%E4%BF%AE%E5%A4%8D%20Kali%20Linux%20grub%E5%BC%95%E5%AF%BC/"/>
+    <id>https://mirror.geek.xiaoww.com/U%E7%9B%98%E4%BF%AE%E5%A4%8D%20Kali%20Linux%20grub%E5%BC%95%E5%AF%BC/</id>
     <published>2025-04-26T09:43:24.385Z</published>
     <updated>2025-04-26T16:43:39.772Z</updated>
     
@@ -254,8 +254,8 @@
   
   <entry>
     <title>sed命令</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/sed%E5%91%BD%E4%BB%A4/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/sed%E5%91%BD%E4%BB%A4/</id>
+    <link href="https://mirror.geek.xiaoww.com/sed%E5%91%BD%E4%BB%A4/"/>
+    <id>https://mirror.geek.xiaoww.com/sed%E5%91%BD%E4%BB%A4/</id>
     <published>2025-04-26T09:43:24.358Z</published>
     <updated>2025-05-31T17:37:13.404Z</updated>
     
@@ -280,8 +280,8 @@
   
   <entry>
     <title>PicGo搭建博客图床+阿里云OSS教程</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/PicGo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A+%E9%98%BF%E9%87%8C%E4%BA%91OSS%E6%95%99%E7%A8%8B/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/PicGo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A+%E9%98%BF%E9%87%8C%E4%BA%91OSS%E6%95%99%E7%A8%8B/</id>
+    <link href="https://mirror.geek.xiaoww.com/PicGo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A+%E9%98%BF%E9%87%8C%E4%BA%91OSS%E6%95%99%E7%A8%8B/"/>
+    <id>https://mirror.geek.xiaoww.com/PicGo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A+%E9%98%BF%E9%87%8C%E4%BA%91OSS%E6%95%99%E7%A8%8B/</id>
     <published>2025-04-26T09:43:24.355Z</published>
     <updated>2025-05-31T20:07:08.809Z</updated>
     
@@ -313,8 +313,8 @@
   
   <entry>
     <title>NOTEPAD++正则表达式</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/NOTEPAD++%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/NOTEPAD++%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
+    <link href="https://mirror.geek.xiaoww.com/NOTEPAD++%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://mirror.geek.xiaoww.com/NOTEPAD++%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
     <published>2025-04-26T09:43:24.351Z</published>
     <updated>2025-05-31T17:35:27.086Z</updated>
     
@@ -337,8 +337,8 @@
   
   <entry>
     <title>MySQL 基本操作：增删改查</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/MySQL%20%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/MySQL%20%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</id>
+    <link href="https://mirror.geek.xiaoww.com/MySQL%20%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
+    <id>https://mirror.geek.xiaoww.com/MySQL%20%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</id>
     <published>2025-04-26T09:43:24.348Z</published>
     <updated>2025-05-31T17:34:21.728Z</updated>
     
@@ -361,8 +361,8 @@
   
   <entry>
     <title>Linux服务器安全配置(Centos7)</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE(Centos7)/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE(Centos7)/</id>
+    <link href="https://mirror.geek.xiaoww.com/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE(Centos7)/"/>
+    <id>https://mirror.geek.xiaoww.com/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE(Centos7)/</id>
     <published>2025-04-26T09:43:24.345Z</published>
     <updated>2025-05-31T17:33:43.010Z</updated>
     
@@ -387,8 +387,8 @@
   
   <entry>
     <title>CentOS7 配置阿里云 Yum 镜像源</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/CentOS7%20%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%20Yum%20%E9%95%9C%E5%83%8F%E6%BA%90/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/CentOS7%20%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%20Yum%20%E9%95%9C%E5%83%8F%E6%BA%90/</id>
+    <link href="https://mirror.geek.xiaoww.com/CentOS7%20%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%20Yum%20%E9%95%9C%E5%83%8F%E6%BA%90/"/>
+    <id>https://mirror.geek.xiaoww.com/CentOS7%20%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%20Yum%20%E9%95%9C%E5%83%8F%E6%BA%90/</id>
     <published>2025-04-26T09:43:24.342Z</published>
     <updated>2025-05-31T17:33:26.075Z</updated>
     
@@ -417,8 +417,8 @@
   
   <entry>
     <title>CentOS 7.6 源码编译安装 PHP 8.0.3</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/CentOS%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20PHP%208.0.3/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/CentOS%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20PHP%208.0.3/</id>
+    <link href="https://mirror.geek.xiaoww.com/CentOS%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20PHP%208.0.3/"/>
+    <id>https://mirror.geek.xiaoww.com/CentOS%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20PHP%208.0.3/</id>
     <published>2025-04-26T09:43:24.338Z</published>
     <updated>2025-05-31T17:33:07.364Z</updated>
     
@@ -446,8 +446,8 @@
   
   <entry>
     <title>Centos 7.6 源码编译安装 Nginx 1.19.10</title>
-    <link href="https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20Nginx%201.19.10/"/>
-    <id>https://mirror.geek.xiaoww.com/2025/04/26/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20Nginx%201.19.10/</id>
+    <link href="https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20Nginx%201.19.10/"/>
+    <id>https://mirror.geek.xiaoww.com/Centos%207.6%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%20Nginx%201.19.10/</id>
     <published>2025-04-26T09:43:24.311Z</published>
     <updated>2025-05-31T17:33:02.124Z</updated>
     
