@@ -1,0 +1,35 @@
+.announcement-bar {
+    background-color: #FFFF99;
+    margin: 20px auto 20px;
+    padding: 5px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 13px;
+    color: #000;
+    position: static;
+    width: 95%;
+    box-sizing: border-box;
+    box-shadow: 5px 10px 5px 1px rgba(0, 0, 0, .2);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    display: static;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.announcement-content {
+  flex: 1;
+}
+
+.bottom-fill {
+    position: relative;
+    display: flex;
+    width: 110%;
+    height: 40px;
+    justify-content: center;
+    align-items: top;
+    margin: 0, auto;
+    transform: translate(-30px, 10px);
+    background: white;
+}
