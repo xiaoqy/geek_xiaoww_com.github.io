@@ -1,7 +1,6 @@
 .announcement-bar {
     background-color: #FFFF99;
     margin: 20px auto 20px;
-    padding: 5px;
     text-align: center;
     line-height: 30px;
     font-size: 13px;
@@ -19,17 +18,17 @@
 }
 
 .announcement-content {
-  flex: 1;
+    flex: 1;
 }
 
 .bottom-fill {
-    position: relative;
-    display: flex;
-    width: 110%;
-    height: 40px;
-    justify-content: center;
-    align-items: top;
-    margin: 0, auto;
-    transform: translate(-30px, 10px);
-    background: white;
+      position: relative;
+      display: flex;
+      width: 102%;
+      height: 40px;
+      justify-content: center;  /* 水平居中 */
+      align-items: top;      /* 垂直居中 */
+      margin: 0 auto;
+      transform: translateY(10px);
+      background: white;
 }
