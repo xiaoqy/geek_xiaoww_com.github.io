@@ -9,7 +9,7 @@ function insertAnnouncement() {
         <div class="announcement-bar">
           <div class="announcement-content">
           ⚠️<span style="font-weight: bold">本站浏览建议 </span>
-            <button id="closeButton" style="width:30px;height: 30px; margin-bottom: 5px; background-color: rgba(255, 0, 0, 0.2); border-radius: 15px" aria-label="关闭公告栏">
+            <button id="closeButton" style="width:30px;height: 30px; margin-top: 6px; background-color: rgba(255, 0, 0, 0.2); border-radius: 15px" aria-label="关闭公告栏">
               <span style="color: red; font-weight: bold">x</span>
             </button>
           <hr style="border: 1px solid #FF1493;" />
