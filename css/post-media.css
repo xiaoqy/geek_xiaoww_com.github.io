@@ -1,0 +1,28 @@
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(85px, 1fr)); /* 每格最小150px，自动填充 */
+    gap: 4px; /* 图片之间的间距 */
+    justify-items: center;
+}
+
+.image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 强制正方形 */
+    object-fit: cover; /* 裁切多余内容保持图片填满 */
+    border-radius: 0; /* 可根据需要调整圆角 */
+    display: block;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
