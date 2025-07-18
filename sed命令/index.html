@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Allen Shaw">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://mirror.geek.xiaoww.com/sed命令/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/xiaoww-blog-logo.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/xiaoww-blog-logo.png">
+    <meta name="theme-color" content="#FF1493">
+    <link rel="shortcut icon" href="/images/xiaoww-blog-logo.png">
+    <!--- Page Info-->
+    
+    <title>
+        思远文文的技术博客 - 镜像站
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" type="text/css" href="/css/web-protection.css" />
+<script data-swup-reload-script type="text/javascript" src="/js/web-protection.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/announcement.css" />
+<script type="text/javascript" src="/js/announcement.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/post-media.css" />
+<script data-swup-reload-script src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js"></script>
+
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/build/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"mirror.geek.xiaoww.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"none","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FF1493","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Welcome to Wenwen's technical blog | 欢迎来到思远文文的技术博客"},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":false,"image":"/images/redefine-og.webp","description":null},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallpaper-daytime.jpg","dark":"/images/wallpaper-nighttime.jpg"},"title":"思远文文的技术博客","subtitle":{"text":["极客爱好，创新精神，灵感之作，专注精致！","探索世界、解决问题、表达理念，热爱记录自己的想法与技术积累。","一行代码，连接世界；一段逻辑，改变未来。","用色彩诠释灵魂，用线条讲述故事，作品之美，心灵可见。","热爱不该被埋没，它值得被看见、被听见。","有追求，这样我们才会有活下去的动力。有梦在，我们的人生才会更加精彩。没有梦想的人生，心灵是干枯的，内心是枯燥乏味的。","人要自信。一个获得成功的人，首先因为他有自信。自信，使不可能成为可能，使可能成为现实。不自信，使可能变成不可能，使不可能变成毫无希望。一分自信，一分成功;十分自信，十分成功。","不断寻求挑战激励自己。提防自己，不要躺倒在舒适区。舒适区只是避风港，不是安乐窝。它只是你心中准备迎接下次挑战之前刻意放松自己和恢复元气的地方。","想，都是问题，做，才是答案，考虑一千次，不如去做一次。因为想而不做的思考叫自己骗自己，犹豫一万次，不如去实践一次。","几乎任何事情都是越做越简单，越想越困难，越拖着越想放弃。","经历是最好的老师，它教会我们成长，也教会我们如何更好地生活。","学习而不思考就会迷茫，思考而不学习就会危险，意为学习和思考要结合起来。","圣人没有固定的老师，意为要广泛学习，不局限于一个人。","世界是一本书，不旅行的人只读了其中的一页。","学习一种语言就是进入一个世界，一种文化。","幸福并不是追求完美，而是学会接纳不完美的自己与他人。","成功的背后往往有着无数次的失败，它们是我们前进的脚印，也是成功的铺垫。","自私让人只看到自己，贪婪让人失去底线，懒惰让人原地踏步，骄傲让人跌倒在前进的路上。","远离穷人，多接触成功人士，才能改变自己的命运。","突然之间心空了，没有了方向，剩下的只是迷茫，没有了生活的意义，感觉没什么规划，没有目标，没有生活动力了，人，活着到底是为了什么。","人生就像愤怒的小鸟，每次你失败的时候，总有几只猪在笑。","每个人都有自己的空间，彼此尊重是必要的。","过度关心只会给对方带来负担，反而适得其反。","给自己一些时间，去放松和充电，才能更好地去面对生活。","人生只有一次，何必为了别人的目光活得委屈，倒不如取悦自己。","生活总是难免坎坷，但爱笑的人运气都不会太差。一个人要想改变自己的命运，先从学会微笑开始"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":80,"backing_speed":30,"starting_delay":500,"backing_delay":5000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"ixiaoqy@gmail.com","fa-regular fa-house":"https://www.xiaoww.com","bilibili":"https://space.bilibili.com/23232348"},"qrs":{"weixin":"images/xiaoww-wechat.jpeg","alipay":"images/xiaoww-alipay.jpeg","qq":"images/xiaoww-qq.jpeg"}}},"plugins":{"feed":{"enable":true,"type":["atom","rss2"],"path":["atom.xml","rss2.xml"],"limit":20,"hub":null,"content":true,"content_limit":140,"content_limit_delim":" ","order_by":"-date","icon":"images/xiaoww-blog-logo.png","autodiscovery":true,"template":["./source/atom.xml","./source/rss2.xml"]},"aplayer":{"enable":"enable","type":"fixed","audios":[{"name":"C U Again","artist":"Cartoon","url":"https://oss.geek.xiaoww.com/music/1.mp3","cover":"https://oss.geek.xiaoww.com/music/1.jpg","lrc":"https://oss.geek.xiaoww.com/music/1.lrc"},{"name":"Safe & Sound","artist":"Different Heaven","url":"https://oss.geek.xiaoww.com/music/2.mp3","cover":"https://oss.geek.xiaoww.com/music/2.jpg","lrc":"https://oss.geek.xiaoww.com/music/2.lrc"},{"name":"Feel Good","artist":"Syn Cole","url":"https://oss.geek.xiaoww.com/music/3.mp3","cover":"https://oss.geek.xiaoww.com/music/3.jpg","lrc":"https://oss.geek.xiaoww.com/music/3.lrc"},{"name":"On & On","artist":"Cartoon","url":"https://oss.geek.xiaoww.com/music/4.mp3","cover":"https://oss.geek.xiaoww.com/music/4.jpg","lrc":"https://oss.geek.xiaoww.com/music/4.lrc"},{"name":"Why We Lose","artist":"Cartoon","url":"https://oss.geek.xiaoww.com/music/5.mp3","cover":"https://oss.geek.xiaoww.com/music/5.jpg","lrc":"https://oss.geek.xiaoww.com/music/5.lrc"},{"name":"Nekozilla","artist":"Different Heaven","url":"https://oss.geek.xiaoww.com/music/6.mp3","cover":"https://oss.geek.xiaoww.com/music/6.jpg","lrc":"https://oss.geek.xiaoww.com/music/6.lrc"},{"name":"My Heart","artist":"Different Heaven","url":"https://oss.geek.xiaoww.com/music/7.mp3","cover":"https://oss.geek.xiaoww.com/music/7.jpg","lrc":"https://oss.geek.xiaoww.com/music/7.lrc"},{"name":"Frontier","artist":"Doctor Vox","url":"https://oss.geek.xiaoww.com/music/8.mp3","cover":"https://oss.geek.xiaoww.com/music/8.jpg","lrc":"https://oss.geek.xiaoww.com/music/8.lrc"},{"name":"Symbolism","artist":"Electrolight","url":"https://oss.geek.xiaoww.com/music/9.mp3","cover":"https://oss.geek.xiaoww.com/music/9.jpg","lrc":"https://oss.geek.xiaoww.com/music/9.lrc"},{"name":"Cetus","artist":"Lensko","url":"https://oss.geek.xiaoww.com/music/10.mp3","cover":"https://oss.geek.xiaoww.com/music/10.jpg","lrc":"https://oss.geek.xiaoww.com/music/10.lrc"},{"name":"Oblivion","artist":"TheFatRat、Lola Blanc","url":"https://oss.geek.xiaoww.com/music/11.mp3","cover":"https://oss.geek.xiaoww.com/music/11.jpg","lrc":"https://oss.geek.xiaoww.com/music/11.lrc"},{"name":"Candyland","artist":"Tobu","url":"https://oss.geek.xiaoww.com/music/12.mp3","cover":"https://oss.geek.xiaoww.com/music/12.jpg","lrc":"https://oss.geek.xiaoww.com/music/12.lrc"},{"name":"Frame of Mind","artist":"Tristam","url":"https://oss.geek.xiaoww.com/music/13.mp3","cover":"https://oss.geek.xiaoww.com/music/13.jpg","lrc":"https://oss.geek.xiaoww.com/music/13.lrc"},{"name":"Nevada","artist":"Vicetone","url":"https://oss.geek.xiaoww.com/music/14.mp3","cover":"https://oss.geek.xiaoww.com/music/14.jpg","lrc":"https://oss.geek.xiaoww.com/music/14.lrc"},{"name":"Solstice","artist":"K-391","url":"https://oss.geek.xiaoww.com/music/15.mp3","cover":"https://oss.geek.xiaoww.com/music/15.jpg","lrc":"https://oss.geek.xiaoww.com/music/15.lrc"},{"name":"Summertime","artist":"K-391","url":"https://oss.geek.xiaoww.com/music/16.mp3","cover":"https://oss.geek.xiaoww.com/music/16.jpg","lrc":"https://oss.geek.xiaoww.com/music/16.lrc"},{"name":"Dancin (Krono Remix)","artist":"Aaron Smith","url":"https://oss.geek.xiaoww.com/music/17.mp3","cover":"https://oss.geek.xiaoww.com/music/17.jpg","lrc":"https://oss.geek.xiaoww.com/music/17.lrc"},{"name":"Alone","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/18.mp3","cover":"https://oss.geek.xiaoww.com/music/18.jpg","lrc":"https://oss.geek.xiaoww.com/music/18.lrc"},{"name":"The Spectre","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/19.mp3","cover":"https://oss.geek.xiaoww.com/music/19.jpg","lrc":"https://oss.geek.xiaoww.com/music/19.lrc"},{"name":"Legends Never Die (Alan Walker Remix)","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/20.mp3","cover":"https://oss.geek.xiaoww.com/music/20.jpg","lrc":"https://oss.geek.xiaoww.com/music/20.lrc"},{"name":"Darkside","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/21.mp3","cover":"https://oss.geek.xiaoww.com/music/21.jpg","lrc":"https://oss.geek.xiaoww.com/music/21.lrc"},{"name":"Tired","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/22.mp3","cover":"https://oss.geek.xiaoww.com/music/22.jpg","lrc":"https://oss.geek.xiaoww.com/music/22.lrc"},{"name":"Faded","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/23.mp3","cover":"https://oss.geek.xiaoww.com/music/23.jpg","lrc":"https://oss.geek.xiaoww.com/music/23.lrc"},{"name":"Sing Me to Sleep","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/24.mp3","cover":"https://oss.geek.xiaoww.com/music/24.jpg","lrc":"https://oss.geek.xiaoww.com/music/24.lrc"},{"name":"Lily","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/25.mp3","cover":"https://oss.geek.xiaoww.com/music/25.jpg","lrc":"https://oss.geek.xiaoww.com/music/25.lrc"},{"name":"Different World","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/26.mp3","cover":"https://oss.geek.xiaoww.com/music/26.jpg","lrc":"https://oss.geek.xiaoww.com/music/26.lrc"},{"name":"All Falls Down","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/27.mp3","cover":"https://oss.geek.xiaoww.com/music/27.jpg","lrc":"https://oss.geek.xiaoww.com/music/27.lrc"},{"name":"Lost Control","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/28.mp3","cover":"https://oss.geek.xiaoww.com/music/28.jpg","lrc":"https://oss.geek.xiaoww.com/music/28.lrc"},{"name":"End of Time","artist":"K-391","url":"https://oss.geek.xiaoww.com/music/29.mp3","cover":"https://oss.geek.xiaoww.com/music/29.jpg","lrc":"https://oss.geek.xiaoww.com/music/29.lrc"},{"name":"Ignite","artist":"K-391","url":"https://oss.geek.xiaoww.com/music/30.mp3","cover":"https://oss.geek.xiaoww.com/music/30.jpg","lrc":"https://oss.geek.xiaoww.com/music/30.lrc"},{"name":"The Calling","artist":"TheFatRat","url":"https://oss.geek.xiaoww.com/music/31.mp3","cover":"https://oss.geek.xiaoww.com/music/31.jpg","lrc":"https://oss.geek.xiaoww.com/music/31.lrc"},{"name":"Rise Up","artist":"TheFatRat","url":"https://oss.geek.xiaoww.com/music/32.mp3","cover":"https://oss.geek.xiaoww.com/music/32.jpg","lrc":"https://oss.geek.xiaoww.com/music/32.lrc"},{"name":"MAYDAY","artist":"TheFatRat","url":"https://oss.geek.xiaoww.com/music/33.mp3","cover":"https://oss.geek.xiaoww.com/music/33.jpg","lrc":"https://oss.geek.xiaoww.com/music/33.lrc"},{"name":"Electrified","artist":"TheFatRat","url":"https://oss.geek.xiaoww.com/music/34.mp3","cover":"https://oss.geek.xiaoww.com/music/34.jpg","lrc":"https://oss.geek.xiaoww.com/music/34.lrc"},{"name":"Xenogenesis","artist":"TheFatRat","url":"https://oss.geek.xiaoww.com/music/35.mp3","cover":"https://oss.geek.xiaoww.com/music/35.jpg","lrc":"https://oss.geek.xiaoww.com/music/35.lrc"},{"name":"Roots","artist":"Tobu","url":"https://oss.geek.xiaoww.com/music/36.mp3","cover":"https://oss.geek.xiaoww.com/music/36.jpg","lrc":"https://oss.geek.xiaoww.com/music/36.lrc"},{"name":"Seven","artist":"Tobu","url":"https://oss.geek.xiaoww.com/music/37.mp3","cover":"https://oss.geek.xiaoww.com/music/37.jpg","lrc":"https://oss.geek.xiaoww.com/music/37.lrc"},{"name":"Sunburst","artist":"Tobu","url":"https://oss.geek.xiaoww.com/music/38.mp3","cover":"https://oss.geek.xiaoww.com/music/38.jpg","lrc":"https://oss.geek.xiaoww.com/music/38.lrc"},{"name":"Move Your Body","artist":"Sia","url":"https://oss.geek.xiaoww.com/music/39.mp3","cover":"https://oss.geek.xiaoww.com/music/39.jpg","lrc":"https://oss.geek.xiaoww.com/music/39.lrc"},{"name":"Beautiful Now","artist":"Zedd","url":"https://oss.geek.xiaoww.com/music/40.mp3","cover":"https://oss.geek.xiaoww.com/music/40.jpg","lrc":"https://oss.geek.xiaoww.com/music/40.lrc"},{"name":"#Lov3 #Ngẫu Hứng","artist":"Hoaprox","url":"https://oss.geek.xiaoww.com/music/41.mp3","cover":"https://oss.geek.xiaoww.com/music/41.jpg","lrc":"https://oss.geek.xiaoww.com/music/41.lrc"},{"name":"Animals (Radio Edit)","artist":"Martin Garrix","url":"https://oss.geek.xiaoww.com/music/42.mp3","cover":"https://oss.geek.xiaoww.com/music/42.jpg","lrc":"https://oss.geek.xiaoww.com/music/42.lrc"},{"name":"Visions","artist":"Acreix","url":"https://oss.geek.xiaoww.com/music/43.mp3","cover":"https://oss.geek.xiaoww.com/music/43.jpg","lrc":"https://oss.geek.xiaoww.com/music/43.lrc"},{"name":"Whataya Want from Me","artist":"Adam Lambert","url":"https://oss.geek.xiaoww.com/music/44.mp3","cover":"https://oss.geek.xiaoww.com/music/44.jpg","lrc":"https://oss.geek.xiaoww.com/music/44.lrc"},{"name":"On My Way","artist":"Alan Walker","url":"https://oss.geek.xiaoww.com/music/45.mp3","cover":"https://oss.geek.xiaoww.com/music/45.jpg","lrc":"https://oss.geek.xiaoww.com/music/45.lrc"},{"name":"You","artist":"Approaching Nirvana","url":"https://oss.geek.xiaoww.com/music/46.mp3","cover":"https://oss.geek.xiaoww.com/music/46.jpg","lrc":"https://oss.geek.xiaoww.com/music/46.lrc"},{"name":"Meant To Be","artist":"Arc North","url":"https://oss.geek.xiaoww.com/music/47.mp3","cover":"https://oss.geek.xiaoww.com/music/47.jpg","lrc":"https://oss.geek.xiaoww.com/music/47.lrc"},{"name":"Waiting For Love","artist":"Avicii","url":"https://oss.geek.xiaoww.com/music/48.mp3","cover":"https://oss.geek.xiaoww.com/music/48.jpg","lrc":"https://oss.geek.xiaoww.com/music/48.lrc"},{"name":"Trip","artist":"Axero","url":"https://oss.geek.xiaoww.com/music/49.mp3","cover":"https://oss.geek.xiaoww.com/music/49.jpg","lrc":"https://oss.geek.xiaoww.com/music/49.lrc"},{"name":"Shooting Stars","artist":"Bag Raiders","url":"https://oss.geek.xiaoww.com/music/50.mp3","cover":"https://oss.geek.xiaoww.com/music/50.jpg","lrc":"https://oss.geek.xiaoww.com/music/50.lrc"},{"name":"Count The Hours","artist":"BEAUZ","url":"https://oss.geek.xiaoww.com/music/51.mp3","cover":"https://oss.geek.xiaoww.com/music/51.jpg","lrc":"https://oss.geek.xiaoww.com/music/51.lrc"},{"name":"bad guy","artist":"Billie Eilish","url":"https://oss.geek.xiaoww.com/music/52.mp3","cover":"https://oss.geek.xiaoww.com/music/52.jpg","lrc":"https://oss.geek.xiaoww.com/music/52.lrc"},{"name":"Boomerang","artist":"Brooks","url":"https://oss.geek.xiaoww.com/music/53.mp3","cover":"https://oss.geek.xiaoww.com/music/53.jpg","lrc":"https://oss.geek.xiaoww.com/music/53.lrc"},{"name":"Tuesday","artist":"Burak Yeter","url":"https://oss.geek.xiaoww.com/music/54.mp3","cover":"https://oss.geek.xiaoww.com/music/54.jpg","lrc":"https://oss.geek.xiaoww.com/music/54.lrc"},{"name":"This Is What You Came For","artist":"Calvin Harris","url":"https://oss.geek.xiaoww.com/music/55.mp3","cover":"https://oss.geek.xiaoww.com/music/55.jpg","lrc":"https://oss.geek.xiaoww.com/music/55.lrc"},{"name":"Touch The Sky","artist":"Cedric Gervais","url":"https://oss.geek.xiaoww.com/music/56.mp3","cover":"https://oss.geek.xiaoww.com/music/56.jpg","lrc":"https://oss.geek.xiaoww.com/music/56.lrc"},{"name":"Future Funk","artist":"Varien","url":"https://oss.geek.xiaoww.com/music/57.mp3","cover":"https://oss.geek.xiaoww.com/music/57.jpg","lrc":"https://oss.geek.xiaoww.com/music/57.lrc"},{"name":"I Feel Human (feat. BullySongs)","artist":"Vicetone","url":"https://oss.geek.xiaoww.com/music/58.mp3","cover":"https://oss.geek.xiaoww.com/music/58.jpg","lrc":"https://oss.geek.xiaoww.com/music/58.lrc"},{"name":"Way Back (feat. Cozi Zuehlsdorff)","artist":"Vicetone","url":"https://oss.geek.xiaoww.com/music/59.mp3","cover":"https://oss.geek.xiaoww.com/music/59.jpg","lrc":"https://oss.geek.xiaoww.com/music/59.lrc"},{"name":"Waiting","artist":"Vicetone","url":"https://oss.geek.xiaoww.com/music/60.mp3","cover":"https://oss.geek.xiaoww.com/music/60.jpg","lrc":"https://oss.geek.xiaoww.com/music/60.lrc"},{"name":"Walk Thru Fire","artist":"Vicetone","url":"https://oss.geek.xiaoww.com/music/61.mp3","cover":"https://oss.geek.xiaoww.com/music/61.jpg","lrc":"https://oss.geek.xiaoww.com/music/61.lrc"},{"name":"Energy Drink","artist":"Virtual Riot","url":"https://oss.geek.xiaoww.com/music/62.mp3","cover":"https://oss.geek.xiaoww.com/music/62.jpg","lrc":"https://oss.geek.xiaoww.com/music/62.lrc"},{"name":"Way Back Home","artist":"SHAUN (숀)","url":"https://oss.geek.xiaoww.com/music/63.mp3","cover":"https://oss.geek.xiaoww.com/music/63.jpg","lrc":"https://oss.geek.xiaoww.com/music/63.lrc"},{"name":"Señorita","artist":"Shawn Mendes","url":"https://oss.geek.xiaoww.com/music/64.mp3","cover":"https://oss.geek.xiaoww.com/music/64.jpg","lrc":"https://oss.geek.xiaoww.com/music/64.lrc"},{"name":"Cheap Thrills (Remix)","artist":"Sia","url":"https://oss.geek.xiaoww.com/music/65.mp3","cover":"https://oss.geek.xiaoww.com/music/65.jpg","lrc":"https://oss.geek.xiaoww.com/music/65.lrc"},{"name":"Sky (Radio Edit)","artist":"Steerner","url":"https://oss.geek.xiaoww.com/music/66.mp3","cover":"https://oss.geek.xiaoww.com/music/66.jpg","lrc":"https://oss.geek.xiaoww.com/music/66.lrc"},{"name":"Cradles","artist":"Sub Urban","url":"https://oss.geek.xiaoww.com/music/67.mp3","cover":"https://oss.geek.xiaoww.com/music/67.jpg","lrc":"https://oss.geek.xiaoww.com/music/67.lrc"},{"name":"Turn All the Lights On","artist":"T-Pain","url":"https://oss.geek.xiaoww.com/music/68.mp3","cover":"https://oss.geek.xiaoww.com/music/68.jpg","lrc":"https://oss.geek.xiaoww.com/music/68.lrc"},{"name":"Да да да (Jarico Remix)","artist":"Tanir","url":"https://oss.geek.xiaoww.com/music/69.mp3","cover":"https://oss.geek.xiaoww.com/music/69.jpg","lrc":"https://oss.geek.xiaoww.com/music/69.lrc"},{"name":"I Knew You Were Trouble.","artist":"Taylor Swift","url":"https://oss.geek.xiaoww.com/music/70.mp3","cover":"https://oss.geek.xiaoww.com/music/70.jpg","lrc":"https://oss.geek.xiaoww.com/music/70.lrc"},{"name":"Something Just Like This","artist":"The Chainsmokers","url":"https://oss.geek.xiaoww.com/music/71.mp3","cover":"https://oss.geek.xiaoww.com/music/71.jpg","lrc":"https://oss.geek.xiaoww.com/music/71.lrc"},{"name":"Don't Let Me Down","artist":"The Chainsmokers","url":"https://oss.geek.xiaoww.com/music/72.mp3","cover":"https://oss.geek.xiaoww.com/music/72.jpg","lrc":"https://oss.geek.xiaoww.com/music/72.lrc"},{"name":"Closer","artist":"The Chainsmokers","url":"https://oss.geek.xiaoww.com/music/73.mp3","cover":"https://oss.geek.xiaoww.com/music/73.jpg","lrc":"https://oss.geek.xiaoww.com/music/73.lrc"},{"name":"Intro","artist":"The xx","url":"https://oss.geek.xiaoww.com/music/74.mp3","cover":"https://oss.geek.xiaoww.com/music/74.jpg","lrc":"https://oss.geek.xiaoww.com/music/74.lrc"},{"name":"Home (Blaze U Remix)","artist":"ThimLife","url":"https://oss.geek.xiaoww.com/music/75.mp3","cover":"https://oss.geek.xiaoww.com/music/75.jpg","lrc":"https://oss.geek.xiaoww.com/music/75.lrc"},{"name":"Fearless","artist":"Tule","url":"https://oss.geek.xiaoww.com/music/76.mp3","cover":"https://oss.geek.xiaoww.com/music/76.jpg","lrc":"https://oss.geek.xiaoww.com/music/76.lrc"},{"name":"Everybody Hates Me","artist":"The Chainsmokers","url":"https://oss.geek.xiaoww.com/music/77.mp3","cover":"https://oss.geek.xiaoww.com/music/77.jpg","lrc":"https://oss.geek.xiaoww.com/music/77.lrc"},{"name":"Samsara","artist":"Tungevaag & Raaban","url":"https://oss.geek.xiaoww.com/music/78.mp3","cover":"https://oss.geek.xiaoww.com/music/78.jpg","lrc":"https://oss.geek.xiaoww.com/music/78.lrc"},{"name":"Daydreamer (Original Mix)","artist":"KarlK","url":"https://oss.geek.xiaoww.com/music/79.mp3","cover":"https://oss.geek.xiaoww.com/music/79.jpg","lrc":"https://oss.geek.xiaoww.com/music/79.lrc"},{"name":"Take It Off","artist":"Kesha","url":"https://oss.geek.xiaoww.com/music/80.mp3","cover":"https://oss.geek.xiaoww.com/music/80.jpg","lrc":"https://oss.geek.xiaoww.com/music/80.lrc"},{"name":"TiK ToK","artist":"Kesha","url":"https://oss.geek.xiaoww.com/music/81.mp3","cover":"https://oss.geek.xiaoww.com/music/81.jpg","lrc":"https://oss.geek.xiaoww.com/music/81.lrc"},{"name":"This Girl","artist":"Kungs","url":"https://oss.geek.xiaoww.com/music/82.mp3","cover":"https://oss.geek.xiaoww.com/music/82.jpg","lrc":"https://oss.geek.xiaoww.com/music/82.lrc"},{"name":"Senbonzakura","artist":"Lindsey Stirling","url":"https://oss.geek.xiaoww.com/music/83.mp3","cover":"https://oss.geek.xiaoww.com/music/83.jpg","lrc":"https://oss.geek.xiaoww.com/music/83.lrc"},{"name":"Reality","artist":"Lost Frequencies","url":"https://oss.geek.xiaoww.com/music/84.mp3","cover":"https://oss.geek.xiaoww.com/music/84.jpg","lrc":"https://oss.geek.xiaoww.com/music/84.lrc"},{"name":"Lean On","artist":"Major Lazer","url":"https://oss.geek.xiaoww.com/music/85.mp3","cover":"https://oss.geek.xiaoww.com/music/85.jpg","lrc":"https://oss.geek.xiaoww.com/music/85.lrc"},{"name":"High On Life","artist":"Martin Garrix","url":"https://oss.geek.xiaoww.com/music/86.mp3","cover":"https://oss.geek.xiaoww.com/music/86.jpg","lrc":"https://oss.geek.xiaoww.com/music/86.lrc"},{"name":"There For You","artist":"Martin Garrix","url":"https://oss.geek.xiaoww.com/music/87.mp3","cover":"https://oss.geek.xiaoww.com/music/87.jpg","lrc":"https://oss.geek.xiaoww.com/music/87.lrc"},{"name":"Solo Dance","artist":"Martin Jensen","url":"https://oss.geek.xiaoww.com/music/88.mp3","cover":"https://oss.geek.xiaoww.com/music/88.jpg","lrc":"https://oss.geek.xiaoww.com/music/88.lrc"},{"name":"One Day","artist":"MatisYahu","url":"https://oss.geek.xiaoww.com/music/89.mp3","cover":"https://oss.geek.xiaoww.com/music/89.jpg","lrc":"https://oss.geek.xiaoww.com/music/89.lrc"},{"name":"Panama","artist":"Matteo","url":"https://oss.geek.xiaoww.com/music/90.mp3","cover":"https://oss.geek.xiaoww.com/music/90.jpg","lrc":"https://oss.geek.xiaoww.com/music/90.lrc"},{"name":"Lose Control","artist":"Meduza","url":"https://oss.geek.xiaoww.com/music/91.mp3","cover":"https://oss.geek.xiaoww.com/music/91.jpg","lrc":"https://oss.geek.xiaoww.com/music/91.lrc"},{"name":"Piece Of Your Heart","artist":"Meduza","url":"https://oss.geek.xiaoww.com/music/92.mp3","cover":"https://oss.geek.xiaoww.com/music/92.jpg","lrc":"https://oss.geek.xiaoww.com/music/92.lrc"},{"name":"Skyland","artist":"Mich","url":"https://oss.geek.xiaoww.com/music/93.mp3","cover":"https://oss.geek.xiaoww.com/music/93.jpg","lrc":"https://oss.geek.xiaoww.com/music/93.lrc"},{"name":"The Ocean (Radio Edit)","artist":"Mike Perry","url":"https://oss.geek.xiaoww.com/music/94.mp3","cover":"https://oss.geek.xiaoww.com/music/94.jpg","lrc":"https://oss.geek.xiaoww.com/music/94.lrc"},{"name":"Endeavors (Original Mix)","artist":"MitiS","url":"https://oss.geek.xiaoww.com/music/95.mp3","cover":"https://oss.geek.xiaoww.com/music/95.jpg","lrc":"https://oss.geek.xiaoww.com/music/95.lrc"},{"name":"Pure Sunlight","artist":"Mr FijiWiji","url":"https://oss.geek.xiaoww.com/music/96.mp3","cover":"https://oss.geek.xiaoww.com/music/96.jpg","lrc":"https://oss.geek.xiaoww.com/music/96.lrc"},{"name":"i don't wanna see u anymore 2019","artist":"NINEONE #","url":"https://oss.geek.xiaoww.com/music/97.mp3","cover":"https://oss.geek.xiaoww.com/music/97.jpg","lrc":"https://oss.geek.xiaoww.com/music/97.lrc"},{"name":"Counting Stars","artist":"OneRepublic","url":"https://oss.geek.xiaoww.com/music/98.mp3","cover":"https://oss.geek.xiaoww.com/music/98.jpg","lrc":"https://oss.geek.xiaoww.com/music/98.lrc"},{"name":"Disconnected","artist":"Pegboard Nerds","url":"https://oss.geek.xiaoww.com/music/99.mp3","cover":"https://oss.geek.xiaoww.com/music/99.jpg","lrc":"https://oss.geek.xiaoww.com/music/99.lrc"},{"name":"Es Rappelt Im Karton","artist":"Pixie Paris","url":"https://oss.geek.xiaoww.com/music/100.mp3","cover":"https://oss.geek.xiaoww.com/music/100.jpg","lrc":"https://oss.geek.xiaoww.com/music/100.lrc"},{"name":"Moshi Moshi","artist":"Poppy","url":"https://oss.geek.xiaoww.com/music/101.mp3","cover":"https://oss.geek.xiaoww.com/music/101.jpg","lrc":"https://oss.geek.xiaoww.com/music/101.lrc"},{"name":"Lullaby","artist":"R3HAB","url":"https://oss.geek.xiaoww.com/music/102.mp3","cover":"https://oss.geek.xiaoww.com/music/102.jpg","lrc":"https://oss.geek.xiaoww.com/music/102.lrc"},{"name":"911","artist":"R3HAB","url":"https://oss.geek.xiaoww.com/music/103.mp3","cover":"https://oss.geek.xiaoww.com/music/103.jpg","lrc":"https://oss.geek.xiaoww.com/music/103.lrc"},{"name":"Shivers","artist":"Rachel Platten","url":"https://oss.geek.xiaoww.com/music/104.mp3","cover":"https://oss.geek.xiaoww.com/music/104.jpg","lrc":"https://oss.geek.xiaoww.com/music/104.lrc"},{"name":"Seasons","artist":"Rival & Cadmium","url":"https://oss.geek.xiaoww.com/music/105.mp3","cover":"https://oss.geek.xiaoww.com/music/105.jpg","lrc":"https://oss.geek.xiaoww.com/music/105.lrc"},{"name":"Psycho (Pt. 2) (Explicit)","artist":"Russ","url":"https://oss.geek.xiaoww.com/music/106.mp3","cover":"https://oss.geek.xiaoww.com/music/106.jpg","lrc":"https://oss.geek.xiaoww.com/music/106.lrc"},{"name":"Dancing With Your Ghost","artist":"Sasha Sloan","url":"https://oss.geek.xiaoww.com/music/107.mp3","cover":"https://oss.geek.xiaoww.com/music/107.jpg","lrc":"https://oss.geek.xiaoww.com/music/107.lrc"},{"name":"Tony Igy - Astronomia (Jiaye Bootleg)","artist":"Jiaye","url":"https://oss.geek.xiaoww.com/music/108.mp3","cover":"https://oss.geek.xiaoww.com/music/108.jpg","lrc":"https://oss.geek.xiaoww.com/music/108.lrc"},{"name":"We Can't Stop","artist":"Miley Cyrus","url":"https://oss.geek.xiaoww.com/music/109.mp3","cover":"https://oss.geek.xiaoww.com/music/109.jpg","lrc":"https://oss.geek.xiaoww.com/music/109.lrc"},{"name":"Sugar","artist":"Maroon 5","url":"https://oss.geek.xiaoww.com/music/110.mp3","cover":"https://oss.geek.xiaoww.com/music/110.jpg","lrc":"https://oss.geek.xiaoww.com/music/110.lrc"},{"name":"Me And My Broken Heart","artist":"push baby","url":"https://oss.geek.xiaoww.com/music/111.mp3","cover":"https://oss.geek.xiaoww.com/music/111.jpg","lrc":"https://oss.geek.xiaoww.com/music/111.lrc"},{"name":"Skin","artist":"Rag'N'Bone Man","url":"https://oss.geek.xiaoww.com/music/112.mp3","cover":"https://oss.geek.xiaoww.com/music/112.jpg","lrc":"https://oss.geek.xiaoww.com/music/112.lrc"},{"name":"Neon Rainbow","artist":"Rameses B","url":"https://oss.geek.xiaoww.com/music/113.mp3","cover":"https://oss.geek.xiaoww.com/music/113.jpg","lrc":"https://oss.geek.xiaoww.com/music/113.lrc"},{"name":"Girls","artist":"Marcus & Martinus","url":"https://oss.geek.xiaoww.com/music/114.mp3","cover":"https://oss.geek.xiaoww.com/music/114.jpg","lrc":"https://oss.geek.xiaoww.com/music/114.lrc"},{"name":"かわいいひと","artist":"CHAI (チャイ)","url":"https://oss.geek.xiaoww.com/music/115.mp3","cover":"https://oss.geek.xiaoww.com/music/115.jpg","lrc":"https://oss.geek.xiaoww.com/music/115.lrc"},{"name":"Take Me to Infinity","artist":"Consoul Trainin","url":"https://oss.geek.xiaoww.com/music/116.mp3","cover":"https://oss.geek.xiaoww.com/music/116.jpg","lrc":"https://oss.geek.xiaoww.com/music/116.lrc"},{"name":"Coming Home","artist":"Dash Berlin","url":"https://oss.geek.xiaoww.com/music/117.mp3","cover":"https://oss.geek.xiaoww.com/music/117.jpg","lrc":"https://oss.geek.xiaoww.com/music/117.lrc"},{"name":"Run Free (Radio Edit)","artist":"Deep Chills","url":"https://oss.geek.xiaoww.com/music/118.mp3","cover":"https://oss.geek.xiaoww.com/music/118.jpg","lrc":"https://oss.geek.xiaoww.com/music/118.lrc"},{"name":"Dependent","artist":"Deepcentral","url":"https://oss.geek.xiaoww.com/music/119.mp3","cover":"https://oss.geek.xiaoww.com/music/119.jpg","lrc":"https://oss.geek.xiaoww.com/music/119.lrc"},{"name":"Five Hours","artist":"Deorro","url":"https://oss.geek.xiaoww.com/music/120.mp3","cover":"https://oss.geek.xiaoww.com/music/120.jpg","lrc":"https://oss.geek.xiaoww.com/music/120.lrc"},{"name":"Geisha","artist":"Dino Sor","url":"https://oss.geek.xiaoww.com/music/121.mp3","cover":"https://oss.geek.xiaoww.com/music/121.jpg","lrc":"https://oss.geek.xiaoww.com/music/121.lrc"},{"name":"Flowers","artist":"Dirty Palm","url":"https://oss.geek.xiaoww.com/music/122.mp3","cover":"https://oss.geek.xiaoww.com/music/122.jpg","lrc":"https://oss.geek.xiaoww.com/music/122.lrc"},{"name":"You Know I'll Go Get","artist":"DJ Haning","url":"https://oss.geek.xiaoww.com/music/123.mp3","cover":"https://oss.geek.xiaoww.com/music/123.jpg","lrc":"https://oss.geek.xiaoww.com/music/123.lrc"},{"name":"Vinai & Scndl - Frontier (Firejaxx Edit) (Original Mix)","artist":"DJHar孙宁","url":"https://oss.geek.xiaoww.com/music/124.mp3","cover":"https://oss.geek.xiaoww.com/music/124.jpg","lrc":"https://oss.geek.xiaoww.com/music/124.lrc"},{"name":"Heaven (Radio Edit)","artist":"Dogena","url":"https://oss.geek.xiaoww.com/music/125.mp3","cover":"https://oss.geek.xiaoww.com/music/125.jpg","lrc":"https://oss.geek.xiaoww.com/music/125.lrc"},{"name":"Ghost","artist":"Au/Ra","url":"https://oss.geek.xiaoww.com/music/126.mp3","cover":"https://oss.geek.xiaoww.com/music/126.jpg","lrc":"https://oss.geek.xiaoww.com/music/126.lrc"},{"name":"Send It","artist":"Austin Mahone","url":"https://oss.geek.xiaoww.com/music/127.mp3","cover":"https://oss.geek.xiaoww.com/music/127.jpg","lrc":"https://oss.geek.xiaoww.com/music/127.lrc"},{"name":"Wrap Me In Plastic","artist":"CHROMANCE","url":"https://oss.geek.xiaoww.com/music/128.mp3","cover":"https://oss.geek.xiaoww.com/music/128.jpg","lrc":"https://oss.geek.xiaoww.com/music/128.lrc"},{"name":"That Girl","artist":"Olly Murs","url":"https://oss.geek.xiaoww.com/music/129.mp3","cover":"https://oss.geek.xiaoww.com/music/129.jpg","lrc":"https://oss.geek.xiaoww.com/music/129.lrc"},{"name":"CALL ME BABY","artist":"EXO (엑소)","url":"https://oss.geek.xiaoww.com/music/130.mp3","cover":"https://oss.geek.xiaoww.com/music/130.jpg","lrc":"https://oss.geek.xiaoww.com/music/130.lrc"},{"name":"Love Shot","artist":"EXO","url":"https://oss.geek.xiaoww.com/music/131.mp3","cover":"https://oss.geek.xiaoww.com/music/131.jpg","lrc":"https://oss.geek.xiaoww.com/music/131.lrc"},{"name":"咆哮 (Growl)","artist":"EXO","url":"https://oss.geek.xiaoww.com/music/132.mp3","cover":"https://oss.geek.xiaoww.com/music/132.jpg","lrc":"https://oss.geek.xiaoww.com/music/132.lrc"},{"name":"Obsession","artist":"EXO","url":"https://oss.geek.xiaoww.com/music/133.mp3","cover":"https://oss.geek.xiaoww.com/music/133.jpg","lrc":"https://oss.geek.xiaoww.com/music/133.lrc"},{"name":"LOSER","artist":"BIGBANG (빅뱅)","url":"https://oss.geek.xiaoww.com/music/134.mp3","cover":"https://oss.geek.xiaoww.com/music/134.jpg","lrc":"https://oss.geek.xiaoww.com/music/134.lrc"},{"name":"IF YOU","artist":"BIGBANG","url":"https://oss.geek.xiaoww.com/music/135.mp3","cover":"https://oss.geek.xiaoww.com/music/135.jpg","lrc":"https://oss.geek.xiaoww.com/music/135.lrc"},{"name":"BANG BANG BANG (뱅뱅뱅)","artist":"BIGBANG (빅뱅)","url":"https://oss.geek.xiaoww.com/music/136.mp3","cover":"https://oss.geek.xiaoww.com/music/136.jpg","lrc":"https://oss.geek.xiaoww.com/music/136.lrc"},{"name":"Haru Haru (一天一天) (Japanese Ver.|BONUS TRACK)","artist":"BIGBANG (빅뱅)","url":"https://oss.geek.xiaoww.com/music/137.mp3","cover":"https://oss.geek.xiaoww.com/music/137.jpg","lrc":"https://oss.geek.xiaoww.com/music/137.lrc"},{"name":"Lies (谎言) (Korea Version)","artist":"BIGBANG (빅뱅)","url":"https://oss.geek.xiaoww.com/music/138.mp3","cover":"https://oss.geek.xiaoww.com/music/138.jpg","lrc":"https://oss.geek.xiaoww.com/music/138.lrc"},{"name":"Fantastic Baby","artist":"BIGBANG (빅뱅)","url":"https://oss.geek.xiaoww.com/music/139.mp3","cover":"https://oss.geek.xiaoww.com/music/139.jpg","lrc":"https://oss.geek.xiaoww.com/music/139.lrc"},{"name":"봄의 나라 이야기","artist":"April","url":"https://oss.geek.xiaoww.com/music/140.mp3","cover":"https://oss.geek.xiaoww.com/music/140.jpg","lrc":"https://oss.geek.xiaoww.com/music/140.lrc"},{"name":"눈을 뜨면","artist":"日韩群星","url":"https://oss.geek.xiaoww.com/music/141.mp3","cover":"https://oss.geek.xiaoww.com/music/141.jpg","lrc":"https://oss.geek.xiaoww.com/music/141.lrc"},{"name":"Зая","artist":"Бамбинтон","url":"https://oss.geek.xiaoww.com/music/142.mp3","cover":"https://oss.geek.xiaoww.com/music/142.jpg","lrc":"https://oss.geek.xiaoww.com/music/142.lrc"},{"name":"Reset","artist":"Tiger JK、JINSIL","url":"https://oss.geek.xiaoww.com/music/143.mp3","cover":"https://oss.geek.xiaoww.com/music/143.jpg","lrc":"https://oss.geek.xiaoww.com/music/143.lrc"},{"name":"Hold On (Radio Edit)","artist":"Moguai","url":"https://oss.geek.xiaoww.com/music/144.mp3","cover":"https://oss.geek.xiaoww.com/music/144.jpg","lrc":"https://oss.geek.xiaoww.com/music/144.lrc"},{"name":"Trap(Korean Ver.)","artist":"圭贤、泰民[SHINee]、刘宪华","url":"https://oss.geek.xiaoww.com/music/145.mp3","cover":"https://oss.geek.xiaoww.com/music/145.jpg","lrc":"https://oss.geek.xiaoww.com/music/145.lrc"},{"name":"꿈사탕","artist":"April","url":"https://oss.geek.xiaoww.com/music/146.mp3","cover":"https://oss.geek.xiaoww.com/music/146.jpg","lrc":"https://oss.geek.xiaoww.com/music/146.lrc"},{"name":"Superstar","artist":"Beatrich","url":"https://oss.geek.xiaoww.com/music/147.mp3","cover":"https://oss.geek.xiaoww.com/music/147.jpg","lrc":"https://oss.geek.xiaoww.com/music/147.lrc"},{"name":"After the Afterparty(16 bit version)","artist":"Charli XCX、Lil Yachty","url":"https://oss.geek.xiaoww.com/music/148.mp3","cover":"https://oss.geek.xiaoww.com/music/148.jpg","lrc":"https://oss.geek.xiaoww.com/music/148.lrc"},{"name":"Shape of You","artist":"Ed Sheeran","url":"https://oss.geek.xiaoww.com/music/149.mp3","cover":"https://oss.geek.xiaoww.com/music/149.jpg","lrc":"https://oss.geek.xiaoww.com/music/149.lrc"},{"name":"We Don't Talk Anymore","artist":"Charlie Puth、Selena Gomez","url":"https://oss.geek.xiaoww.com/music/150.mp3","cover":"https://oss.geek.xiaoww.com/music/150.jpg","lrc":"https://oss.geek.xiaoww.com/music/150.lrc"},{"name":"Stay With Me","artist":"朴灿烈、Punch[韩]","url":"https://oss.geek.xiaoww.com/music/151.mp3","cover":"https://oss.geek.xiaoww.com/music/151.jpg","lrc":"https://oss.geek.xiaoww.com/music/151.lrc"},{"name":"LIKEY","artist":"TWICE (트와이스)","url":"https://oss.geek.xiaoww.com/music/152.mp3","cover":"https://oss.geek.xiaoww.com/music/152.jpg","lrc":"https://oss.geek.xiaoww.com/music/152.lrc"},{"name":"Salt(Syn Cole Remix)","artist":"Ava Max","url":"https://oss.geek.xiaoww.com/music/153.mp3","cover":"https://oss.geek.xiaoww.com/music/153.jpg","lrc":"https://oss.geek.xiaoww.com/music/153.lrc"},{"name":"寄明月","artist":"SING女团","url":"https://oss.geek.xiaoww.com/music/154.mp3","cover":"https://oss.geek.xiaoww.com/music/154.jpg","lrc":"https://oss.geek.xiaoww.com/music/154.lrc"},{"name":"嚣张","artist":"en","url":"https://oss.geek.xiaoww.com/music/155.mp3","cover":"https://oss.geek.xiaoww.com/music/155.jpg","lrc":"https://oss.geek.xiaoww.com/music/155.lrc"},{"name":"Leevis","artist":"Fri","url":"https://oss.geek.xiaoww.com/music/156.mp3","cover":"https://oss.geek.xiaoww.com/music/156.jpg","lrc":"https://oss.geek.xiaoww.com/music/156.lrc"},{"name":"Choir (Remix)","artist":"Guy Sebastian","url":"https://oss.geek.xiaoww.com/music/157.mp3","cover":"https://oss.geek.xiaoww.com/music/157.jpg","lrc":"https://oss.geek.xiaoww.com/music/157.lrc"},{"name":"Sold Out","artist":"Hawk Nelson","url":"https://oss.geek.xiaoww.com/music/158.mp3","cover":"https://oss.geek.xiaoww.com/music/158.jpg","lrc":"https://oss.geek.xiaoww.com/music/158.lrc"},{"name":"心如止水","artist":"Ice Paper","url":"https://oss.geek.xiaoww.com/music/159.mp3","cover":"https://oss.geek.xiaoww.com/music/159.jpg","lrc":"https://oss.geek.xiaoww.com/music/159.lrc"},{"name":"Fractures","artist":"ILLENIUM","url":"https://oss.geek.xiaoww.com/music/160.mp3","cover":"https://oss.geek.xiaoww.com/music/160.jpg","lrc":"https://oss.geek.xiaoww.com/music/160.lrc"},{"name":"Panda","artist":"Itro","url":"https://oss.geek.xiaoww.com/music/161.mp3","cover":"https://oss.geek.xiaoww.com/music/161.jpg","lrc":"https://oss.geek.xiaoww.com/music/161.lrc"},{"name":"Where Is Your Love","artist":"J Lisk","url":"https://oss.geek.xiaoww.com/music/162.mp3","cover":"https://oss.geek.xiaoww.com/music/162.jpg","lrc":"https://oss.geek.xiaoww.com/music/162.lrc"},{"name":"Horizon","artist":"Janji","url":"https://oss.geek.xiaoww.com/music/163.mp3","cover":"https://oss.geek.xiaoww.com/music/163.jpg","lrc":"https://oss.geek.xiaoww.com/music/163.lrc"},{"name":"星球坠落","artist":"JelloRio李佳隆","url":"https://oss.geek.xiaoww.com/music/164.mp3","cover":"https://oss.geek.xiaoww.com/music/164.jpg","lrc":"https://oss.geek.xiaoww.com/music/164.lrc"},{"name":"Please Don't Go","artist":"Joel Adams","url":"https://oss.geek.xiaoww.com/music/165.mp3","cover":"https://oss.geek.xiaoww.com/music/165.jpg","lrc":"https://oss.geek.xiaoww.com/music/165.lrc"},{"name":"By Your Side","artist":"Jonas Blue","url":"https://oss.geek.xiaoww.com/music/166.mp3","cover":"https://oss.geek.xiaoww.com/music/166.jpg","lrc":"https://oss.geek.xiaoww.com/music/166.lrc"},{"name":"Come & Go (Explicit)","artist":"Juice WRLD","url":"https://oss.geek.xiaoww.com/music/167.mp3","cover":"https://oss.geek.xiaoww.com/music/167.jpg","lrc":"https://oss.geek.xiaoww.com/music/167.lrc"},{"name":"清新的小女孩（For Ma）","artist":"July Tun","url":"https://oss.geek.xiaoww.com/music/168.mp3","cover":"https://oss.geek.xiaoww.com/music/168.jpg","lrc":"https://oss.geek.xiaoww.com/music/168.lrc"},{"name":"aLIEz","artist":"SawanoHiroyuki[nZk] (泽野弘之)","url":"https://oss.geek.xiaoww.com/music/169.mp3","cover":"https://oss.geek.xiaoww.com/music/169.jpg","lrc":"https://oss.geek.xiaoww.com/music/169.lrc"},{"name":"PDD洪荒之力","artist":"青稚m","url":"https://oss.geek.xiaoww.com/music/170.mp3","cover":"https://oss.geek.xiaoww.com/music/170.jpg","lrc":"https://oss.geek.xiaoww.com/music/170.lrc"},{"name":"Limitless（无限）","artist":"SeVen.13","url":"https://oss.geek.xiaoww.com/music/171.mp3","cover":"https://oss.geek.xiaoww.com/music/171.jpg","lrc":"https://oss.geek.xiaoww.com/music/171.lrc"},{"name":"What is Love?","artist":"TWICE (트와이스)","url":"https://oss.geek.xiaoww.com/music/172.mp3","cover":"https://oss.geek.xiaoww.com/music/172.jpg","lrc":"https://oss.geek.xiaoww.com/music/172.lrc"},{"name":"For The Win (Dance Remix)","artist":"Two Steps From Hell","url":"https://oss.geek.xiaoww.com/music/173.mp3","cover":"https://oss.geek.xiaoww.com/music/173.jpg","lrc":"https://oss.geek.xiaoww.com/music/173.lrc"},{"name":"给我一个理由忘记","artist":"A-Lin","url":"https://oss.geek.xiaoww.com/music/174.mp3","cover":"https://oss.geek.xiaoww.com/music/174.jpg","lrc":"https://oss.geek.xiaoww.com/music/174.lrc"},{"name":"文爱","artist":"CG","url":"https://oss.geek.xiaoww.com/music/175.mp3","cover":"https://oss.geek.xiaoww.com/music/175.jpg","lrc":"https://oss.geek.xiaoww.com/music/175.lrc"},{"name":"光年之外","artist":"G.E.M. 邓紫棋","url":"https://oss.geek.xiaoww.com/music/176.mp3","cover":"https://oss.geek.xiaoww.com/music/176.jpg","lrc":"https://oss.geek.xiaoww.com/music/176.lrc"},{"name":"句号","artist":"G.E.M. 邓紫棋","url":"https://oss.geek.xiaoww.com/music/177.mp3","cover":"https://oss.geek.xiaoww.com/music/177.jpg","lrc":"https://oss.geek.xiaoww.com/music/177.lrc"},{"name":"来自天堂的魔鬼","artist":"G.E.M. 邓紫棋","url":"https://oss.geek.xiaoww.com/music/178.mp3","cover":"https://oss.geek.xiaoww.com/music/178.jpg","lrc":"https://oss.geek.xiaoww.com/music/178.lrc"},{"name":"泡沫","artist":"G.E.M. 邓紫棋","url":"https://oss.geek.xiaoww.com/music/179.mp3","cover":"https://oss.geek.xiaoww.com/music/179.jpg","lrc":"https://oss.geek.xiaoww.com/music/179.lrc"},{"name":"短发","artist":"Lamp猴子","url":"https://oss.geek.xiaoww.com/music/180.mp3","cover":"https://oss.geek.xiaoww.com/music/180.jpg","lrc":"https://oss.geek.xiaoww.com/music/180.lrc"},{"name":"傻傻","artist":"Uu","url":"https://oss.geek.xiaoww.com/music/181.mp3","cover":"https://oss.geek.xiaoww.com/music/181.jpg","lrc":"https://oss.geek.xiaoww.com/music/181.lrc"},{"name":"夏天的风","artist":"Uu","url":"https://oss.geek.xiaoww.com/music/182.mp3","cover":"https://oss.geek.xiaoww.com/music/182.jpg","lrc":"https://oss.geek.xiaoww.com/music/182.lrc"},{"name":"East of Eden","artist":"Zella Day","url":"https://oss.geek.xiaoww.com/music/183.mp3","cover":"https://oss.geek.xiaoww.com/music/183.jpg","lrc":"https://oss.geek.xiaoww.com/music/183.lrc"},{"name":"China-X","artist":"徐梦圆","url":"https://oss.geek.xiaoww.com/music/184.mp3","cover":"https://oss.geek.xiaoww.com/music/184.jpg","lrc":"https://oss.geek.xiaoww.com/music/184.lrc"},{"name":"不爱我就拉倒","artist":"周杰伦","url":"https://oss.geek.xiaoww.com/music/185.mp3","cover":"https://oss.geek.xiaoww.com/music/185.jpg","lrc":"https://oss.geek.xiaoww.com/music/185.lrc"},{"name":"说好的幸福呢","artist":"周杰伦","url":"https://oss.geek.xiaoww.com/music/186.mp3","cover":"https://oss.geek.xiaoww.com/music/186.jpg","lrc":"https://oss.geek.xiaoww.com/music/186.lrc"},{"name":"小苹果","artist":"筷子兄弟","url":"https://oss.geek.xiaoww.com/music/187.mp3","cover":"https://oss.geek.xiaoww.com/music/187.jpg","lrc":"https://oss.geek.xiaoww.com/music/187.lrc"},{"name":"说散就散","artist":"袁娅维","url":"https://oss.geek.xiaoww.com/music/188.mp3","cover":"https://oss.geek.xiaoww.com/music/188.jpg","lrc":"https://oss.geek.xiaoww.com/music/188.lrc"},{"name":"少年","artist":"梦然","url":"https://oss.geek.xiaoww.com/music/189.mp3","cover":"https://oss.geek.xiaoww.com/music/189.jpg","lrc":"https://oss.geek.xiaoww.com/music/189.lrc"},{"name":"白山茶","artist":"阿泱","url":"https://oss.geek.xiaoww.com/music/190.mp3","cover":"https://oss.geek.xiaoww.com/music/190.jpg","lrc":"https://oss.geek.xiaoww.com/music/190.lrc"},{"name":"缺氧","artist":"安苏羽","url":"https://oss.geek.xiaoww.com/music/191.mp3","cover":"https://oss.geek.xiaoww.com/music/191.jpg","lrc":"https://oss.geek.xiaoww.com/music/191.lrc"},{"name":"最美情侣","artist":"白小白","url":"https://oss.geek.xiaoww.com/music/192.mp3","cover":"https://oss.geek.xiaoww.com/music/192.jpg","lrc":"https://oss.geek.xiaoww.com/music/192.lrc"},{"name":"战放","artist":"本兮","url":"https://oss.geek.xiaoww.com/music/193.mp3","cover":"https://oss.geek.xiaoww.com/music/193.jpg","lrc":"https://oss.geek.xiaoww.com/music/193.lrc"},{"name":"翻篇","artist":"本兮","url":"https://oss.geek.xiaoww.com/music/194.mp3","cover":"https://oss.geek.xiaoww.com/music/194.jpg","lrc":"https://oss.geek.xiaoww.com/music/194.lrc"},{"name":"你在看孤独的风景","artist":"本兮","url":"https://oss.geek.xiaoww.com/music/195.mp3","cover":"https://oss.geek.xiaoww.com/music/195.jpg","lrc":"https://oss.geek.xiaoww.com/music/195.lrc"},{"name":"追光者","artist":"岑宁儿","url":"https://oss.geek.xiaoww.com/music/196.mp3","cover":"https://oss.geek.xiaoww.com/music/196.jpg","lrc":"https://oss.geek.xiaoww.com/music/196.lrc"},{"name":"生僻字","artist":"陈柯宇","url":"https://oss.geek.xiaoww.com/music/197.mp3","cover":"https://oss.geek.xiaoww.com/music/197.jpg","lrc":"https://oss.geek.xiaoww.com/music/197.lrc"},{"name":"青梅竹马","artist":"陈秋含","url":"https://oss.geek.xiaoww.com/music/198.mp3","cover":"https://oss.geek.xiaoww.com/music/198.jpg","lrc":"https://oss.geek.xiaoww.com/music/198.lrc"},{"name":"你的酒馆对我打了烊","artist":"陈雪凝","url":"https://oss.geek.xiaoww.com/music/199.mp3","cover":"https://oss.geek.xiaoww.com/music/199.jpg","lrc":"https://oss.geek.xiaoww.com/music/199.lrc"},{"name":"绿色","artist":"陈雪凝","url":"https://oss.geek.xiaoww.com/music/200.mp3","cover":"https://oss.geek.xiaoww.com/music/200.jpg","lrc":"https://oss.geek.xiaoww.com/music/200.lrc"},{"name":"ねこみみスイッチ (猫耳开关)","artist":"初音未来 (初音ミク)","url":"https://oss.geek.xiaoww.com/music/201.mp3","cover":"https://oss.geek.xiaoww.com/music/201.jpg","lrc":"https://oss.geek.xiaoww.com/music/201.lrc"},{"name":"ワールドイズマイン (World is Mine)","artist":"初音未来 (初音ミク)","url":"https://oss.geek.xiaoww.com/music/202.mp3","cover":"https://oss.geek.xiaoww.com/music/202.jpg","lrc":"https://oss.geek.xiaoww.com/music/202.lrc"},{"name":"千本桜 (千本樱)","artist":"初音未来 (初音ミク)","url":"https://oss.geek.xiaoww.com/music/203.mp3","cover":"https://oss.geek.xiaoww.com/music/203.jpg","lrc":"https://oss.geek.xiaoww.com/music/203.lrc"},{"name":"哈鹿哈鹿哈鹿","artist":"大张伟","url":"https://oss.geek.xiaoww.com/music/204.mp3","cover":"https://oss.geek.xiaoww.com/music/204.jpg","lrc":"https://oss.geek.xiaoww.com/music/204.lrc"},{"name":"佛系少女","artist":"冯提莫","url":"https://oss.geek.xiaoww.com/music/205.mp3","cover":"https://oss.geek.xiaoww.com/music/205.jpg","lrc":"https://oss.geek.xiaoww.com/music/205.lrc"},{"name":"明明说好不哭","artist":"何曼婷","url":"https://oss.geek.xiaoww.com/music/206.mp3","cover":"https://oss.geek.xiaoww.com/music/206.jpg","lrc":"https://oss.geek.xiaoww.com/music/206.lrc"},{"name":"浪人琵琶","artist":"胡66","url":"https://oss.geek.xiaoww.com/music/207.mp3","cover":"https://oss.geek.xiaoww.com/music/207.jpg","lrc":"https://oss.geek.xiaoww.com/music/207.lrc"},{"name":"空空如也","artist":"胡66","url":"https://oss.geek.xiaoww.com/music/208.mp3","cover":"https://oss.geek.xiaoww.com/music/208.jpg","lrc":"https://oss.geek.xiaoww.com/music/208.lrc"},{"name":"卡路里","artist":"火箭少女101","url":"https://oss.geek.xiaoww.com/music/209.mp3","cover":"https://oss.geek.xiaoww.com/music/209.jpg","lrc":"https://oss.geek.xiaoww.com/music/209.lrc"},{"name":"残雪","artist":"蒋蒋","url":"https://oss.geek.xiaoww.com/music/210.mp3","cover":"https://oss.geek.xiaoww.com/music/210.jpg","lrc":"https://oss.geek.xiaoww.com/music/210.lrc"},{"name":"春娇与志明","artist":"街道办GDC","url":"https://oss.geek.xiaoww.com/music/211.mp3","cover":"https://oss.geek.xiaoww.com/music/211.jpg","lrc":"https://oss.geek.xiaoww.com/music/211.lrc"},{"name":"超级喜欢你","artist":"金南玲","url":"https://oss.geek.xiaoww.com/music/212.mp3","cover":"https://oss.geek.xiaoww.com/music/212.jpg","lrc":"https://oss.geek.xiaoww.com/music/212.lrc"},{"name":"BINGBIAN病变 (女声版)","artist":"鞠文娴","url":"https://oss.geek.xiaoww.com/music/213.mp3","cover":"https://oss.geek.xiaoww.com/music/213.jpg","lrc":"https://oss.geek.xiaoww.com/music/213.lrc"},{"name":"不将就","artist":"李荣浩","url":"https://oss.geek.xiaoww.com/music/214.mp3","cover":"https://oss.geek.xiaoww.com/music/214.jpg","lrc":"https://oss.geek.xiaoww.com/music/214.lrc"},{"name":"分手快乐","artist":"梁静茹","url":"https://oss.geek.xiaoww.com/music/215.mp3","cover":"https://oss.geek.xiaoww.com/music/215.jpg","lrc":"https://oss.geek.xiaoww.com/music/215.lrc"},{"name":"交织together","artist":"泠鸢yousa","url":"https://oss.geek.xiaoww.com/music/216.mp3","cover":"https://oss.geek.xiaoww.com/music/216.jpg","lrc":"https://oss.geek.xiaoww.com/music/216.lrc"},{"name":"勾指起誓","artist":"泠鸢yousa","url":"https://oss.geek.xiaoww.com/music/217.mp3","cover":"https://oss.geek.xiaoww.com/music/217.jpg","lrc":"https://oss.geek.xiaoww.com/music/217.lrc"},{"name":"9420","artist":"麦小兜","url":"https://oss.geek.xiaoww.com/music/218.mp3","cover":"https://oss.geek.xiaoww.com/music/218.jpg","lrc":"https://oss.geek.xiaoww.com/music/218.lrc"},{"name":"咖喱咖喱","artist":"牛奶咖啡","url":"https://oss.geek.xiaoww.com/music/219.mp3","cover":"https://oss.geek.xiaoww.com/music/219.jpg","lrc":"https://oss.geek.xiaoww.com/music/219.lrc"},{"name":"明天，你好","artist":"牛奶咖啡","url":"https://oss.geek.xiaoww.com/music/220.mp3","cover":"https://oss.geek.xiaoww.com/music/220.jpg","lrc":"https://oss.geek.xiaoww.com/music/220.lrc"},{"name":"星星","artist":"牛奶咖啡","url":"https://oss.geek.xiaoww.com/music/221.mp3","cover":"https://oss.geek.xiaoww.com/music/221.jpg","lrc":"https://oss.geek.xiaoww.com/music/221.lrc"},{"name":"越长大越孤单","artist":"牛奶咖啡","url":"https://oss.geek.xiaoww.com/music/222.mp3","cover":"https://oss.geek.xiaoww.com/music/222.jpg","lrc":"https://oss.geek.xiaoww.com/music/222.lrc"},{"name":"触摸天空","artist":"漆柚","url":"https://oss.geek.xiaoww.com/music/223.mp3","cover":"https://oss.geek.xiaoww.com/music/223.jpg","lrc":"https://oss.geek.xiaoww.com/music/223.lrc"},{"name":"唐人","artist":"孙子涵","url":"https://oss.geek.xiaoww.com/music/224.mp3","cover":"https://oss.geek.xiaoww.com/music/224.jpg","lrc":"https://oss.geek.xiaoww.com/music/224.lrc"},{"name":"全世界宣布爱你","artist":"孙子涵","url":"https://oss.geek.xiaoww.com/music/225.mp3","cover":"https://oss.geek.xiaoww.com/music/225.jpg","lrc":"https://oss.geek.xiaoww.com/music/225.lrc"},{"name":"不仅仅是喜欢","artist":"孙语赛","url":"https://oss.geek.xiaoww.com/music/226.mp3","cover":"https://oss.geek.xiaoww.com/music/226.jpg","lrc":"https://oss.geek.xiaoww.com/music/226.lrc"},{"name":"你就不要想起我","artist":"田馥甄","url":"https://oss.geek.xiaoww.com/music/227.mp3","cover":"https://oss.geek.xiaoww.com/music/227.jpg","lrc":"https://oss.geek.xiaoww.com/music/227.lrc"},{"name":"一个人也能好好过","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/228.mp3","cover":"https://oss.geek.xiaoww.com/music/228.jpg","lrc":"https://oss.geek.xiaoww.com/music/228.lrc"},{"name":"别让我放不下","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/229.mp3","cover":"https://oss.geek.xiaoww.com/music/229.jpg","lrc":"https://oss.geek.xiaoww.com/music/229.lrc"},{"name":"吃货进行曲","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/230.mp3","cover":"https://oss.geek.xiaoww.com/music/230.jpg","lrc":"https://oss.geek.xiaoww.com/music/230.lrc"},{"name":"多莉宝贝","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/231.mp3","cover":"https://oss.geek.xiaoww.com/music/231.jpg","lrc":"https://oss.geek.xiaoww.com/music/231.lrc"},{"name":"少女心","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/232.mp3","cover":"https://oss.geek.xiaoww.com/music/232.jpg","lrc":"https://oss.geek.xiaoww.com/music/232.lrc"},{"name":"怪我咯","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/233.mp3","cover":"https://oss.geek.xiaoww.com/music/233.jpg","lrc":"https://oss.geek.xiaoww.com/music/233.lrc"},{"name":"泣灵","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/234.mp3","cover":"https://oss.geek.xiaoww.com/music/234.jpg","lrc":"https://oss.geek.xiaoww.com/music/234.lrc"},{"name":"萌二代","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/235.mp3","cover":"https://oss.geek.xiaoww.com/music/235.jpg","lrc":"https://oss.geek.xiaoww.com/music/235.lrc"},{"name":"萌萌哒","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/236.mp3","cover":"https://oss.geek.xiaoww.com/music/236.jpg","lrc":"https://oss.geek.xiaoww.com/music/236.lrc"},{"name":"薛定谔的猫","artist":"童可可","url":"https://oss.geek.xiaoww.com/music/237.mp3","cover":"https://oss.geek.xiaoww.com/music/237.jpg","lrc":"https://oss.geek.xiaoww.com/music/237.lrc"},{"name":"怒放的生命","artist":"汪峰","url":"https://oss.geek.xiaoww.com/music/238.mp3","cover":"https://oss.geek.xiaoww.com/music/238.jpg","lrc":"https://oss.geek.xiaoww.com/music/238.lrc"},{"name":"123我爱你","artist":"新乐尘符","url":"https://oss.geek.xiaoww.com/music/239.mp3","cover":"https://oss.geek.xiaoww.com/music/239.jpg","lrc":"https://oss.geek.xiaoww.com/music/239.lrc"},{"name":"你要的全拿走","artist":"胡彦斌","url":"https://oss.geek.xiaoww.com/music/240.mp3","cover":"https://oss.geek.xiaoww.com/music/240.jpg","lrc":"https://oss.geek.xiaoww.com/music/240.lrc"},{"name":"丑八怪","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/241.mp3","cover":"https://oss.geek.xiaoww.com/music/241.jpg","lrc":"https://oss.geek.xiaoww.com/music/241.lrc"},{"name":"你还要我怎样","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/242.mp3","cover":"https://oss.geek.xiaoww.com/music/242.jpg","lrc":"https://oss.geek.xiaoww.com/music/242.lrc"},{"name":"像风一样","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/243.mp3","cover":"https://oss.geek.xiaoww.com/music/243.jpg","lrc":"https://oss.geek.xiaoww.com/music/243.lrc"},{"name":"小孩","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/244.mp3","cover":"https://oss.geek.xiaoww.com/music/244.jpg","lrc":"https://oss.geek.xiaoww.com/music/244.lrc"},{"name":"方圆几里","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/245.mp3","cover":"https://oss.geek.xiaoww.com/music/245.jpg","lrc":"https://oss.geek.xiaoww.com/music/245.lrc"},{"name":"演员","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/246.mp3","cover":"https://oss.geek.xiaoww.com/music/246.jpg","lrc":"https://oss.geek.xiaoww.com/music/246.lrc"},{"name":"绅士","artist":"薛之谦","url":"https://oss.geek.xiaoww.com/music/247.mp3","cover":"https://oss.geek.xiaoww.com/music/247.jpg","lrc":"https://oss.geek.xiaoww.com/music/247.lrc"},{"name":"红昭愿","artist":"音阙诗听","url":"https://oss.geek.xiaoww.com/music/248.mp3","cover":"https://oss.geek.xiaoww.com/music/248.jpg","lrc":"https://oss.geek.xiaoww.com/music/248.lrc"},{"name":"芒种","artist":"音阙诗听","url":"https://oss.geek.xiaoww.com/music/249.mp3","cover":"https://oss.geek.xiaoww.com/music/249.jpg","lrc":"https://oss.geek.xiaoww.com/music/249.lrc"},{"name":"侧脸","artist":"于果","url":"https://oss.geek.xiaoww.com/music/250.mp3","cover":"https://oss.geek.xiaoww.com/music/250.jpg","lrc":"https://oss.geek.xiaoww.com/music/250.lrc"},{"name":"尽头","artist":"赵方婧","url":"https://oss.geek.xiaoww.com/music/251.mp3","cover":"https://oss.geek.xiaoww.com/music/251.jpg","lrc":"https://oss.geek.xiaoww.com/music/251.lrc"},{"name":"最美的期待","artist":"周笔畅","url":"https://oss.geek.xiaoww.com/music/252.mp3","cover":"https://oss.geek.xiaoww.com/music/252.jpg","lrc":"https://oss.geek.xiaoww.com/music/252.lrc"},{"name":"莫名奇妙爱上你","artist":"朱主爱","url":"https://oss.geek.xiaoww.com/music/253.mp3","cover":"https://oss.geek.xiaoww.com/music/253.jpg","lrc":"https://oss.geek.xiaoww.com/music/253.lrc"},{"name":"再见只是陌生人","artist":"庄心妍","url":"https://oss.geek.xiaoww.com/music/254.mp3","cover":"https://oss.geek.xiaoww.com/music/254.jpg","lrc":"https://oss.geek.xiaoww.com/music/254.lrc"},{"name":"爱的就是你","artist":"刘佳","url":"https://oss.geek.xiaoww.com/music/255.mp3","cover":"https://oss.geek.xiaoww.com/music/255.jpg","lrc":"https://oss.geek.xiaoww.com/music/255.lrc"},{"name":"体面","artist":"于文文","url":"https://oss.geek.xiaoww.com/music/256.mp3","cover":"https://oss.geek.xiaoww.com/music/256.jpg","lrc":"https://oss.geek.xiaoww.com/music/256.lrc"},{"name":"我爱他","artist":"群星","url":"https://oss.geek.xiaoww.com/music/257.mp3","cover":"https://oss.geek.xiaoww.com/music/257.jpg","lrc":"https://oss.geek.xiaoww.com/music/257.lrc"},{"name":"カサネテク (千层套路)","artist":"中村千尋 (なかむらちひろ)","url":"https://oss.geek.xiaoww.com/music/258.mp3","cover":"https://oss.geek.xiaoww.com/music/258.jpg","lrc":"https://oss.geek.xiaoww.com/music/258.lrc"},{"name":"无人之岛","artist":"任然","url":"https://oss.geek.xiaoww.com/music/259.mp3","cover":"https://oss.geek.xiaoww.com/music/259.jpg","lrc":"https://oss.geek.xiaoww.com/music/259.lrc"},{"name":"童话","artist":"光良","url":"https://oss.geek.xiaoww.com/music/260.mp3","cover":"https://oss.geek.xiaoww.com/music/260.jpg","lrc":"https://oss.geek.xiaoww.com/music/260.lrc"},{"name":"YES！OK！","artist":"青春有你2","url":"https://oss.geek.xiaoww.com/music/261.mp3","cover":"https://oss.geek.xiaoww.com/music/261.jpg","lrc":"https://oss.geek.xiaoww.com/music/261.lrc"},{"name":"我很快乐","artist":"刘惜君","url":"https://oss.geek.xiaoww.com/music/262.mp3","cover":"https://oss.geek.xiaoww.com/music/262.jpg","lrc":"https://oss.geek.xiaoww.com/music/262.lrc"},{"name":"无价之姐","artist":"李宇春","url":"https://oss.geek.xiaoww.com/music/263.mp3","cover":"https://oss.geek.xiaoww.com/music/263.jpg","lrc":"https://oss.geek.xiaoww.com/music/263.lrc"},{"name":"dududu","artist":"咬人猫","url":"https://oss.geek.xiaoww.com/music/264.mp3","cover":"https://oss.geek.xiaoww.com/music/264.jpg","lrc":"https://oss.geek.xiaoww.com/music/264.lrc"},{"name":"一个人","artist":"夏婉安","url":"https://oss.geek.xiaoww.com/music/265.mp3","cover":"https://oss.geek.xiaoww.com/music/265.jpg","lrc":"https://oss.geek.xiaoww.com/music/265.lrc"},{"name":"芊芊","artist":"封茗囧菌","url":"https://oss.geek.xiaoww.com/music/266.mp3","cover":"https://oss.geek.xiaoww.com/music/266.jpg","lrc":"https://oss.geek.xiaoww.com/music/266.lrc"},{"name":"旧梦一场","artist":"阿悠悠","url":"https://oss.geek.xiaoww.com/music/267.mp3","cover":"https://oss.geek.xiaoww.com/music/267.jpg","lrc":"https://oss.geek.xiaoww.com/music/267.lrc"},{"name":"爱你","artist":"陈芳语","url":"https://oss.geek.xiaoww.com/music/268.mp3","cover":"https://oss.geek.xiaoww.com/music/268.jpg","lrc":"https://oss.geek.xiaoww.com/music/268.lrc"},{"name":"学猫叫","artist":"小潘潘（潘柚彤）","url":"https://oss.geek.xiaoww.com/music/269.mp3","cover":"https://oss.geek.xiaoww.com/music/269.jpg","lrc":"https://oss.geek.xiaoww.com/music/269.lrc"},{"name":"苏苏喂苏苏 (抖音版)","artist":"小阿诺","url":"https://oss.geek.xiaoww.com/music/270.mp3","cover":"https://oss.geek.xiaoww.com/music/270.jpg","lrc":"https://oss.geek.xiaoww.com/music/270.lrc"},{"name":"破茧","artist":"张韶涵","url":"https://oss.geek.xiaoww.com/music/271.mp3","cover":"https://oss.geek.xiaoww.com/music/271.jpg","lrc":"https://oss.geek.xiaoww.com/music/271.lrc"},{"name":"小小鹿","artist":"新月冰冰","url":"https://oss.geek.xiaoww.com/music/272.mp3","cover":"https://oss.geek.xiaoww.com/music/272.jpg","lrc":"https://oss.geek.xiaoww.com/music/272.lrc"},{"name":"天亮以前说再见","artist":"曲肖冰","url":"https://oss.geek.xiaoww.com/music/273.mp3","cover":"https://oss.geek.xiaoww.com/music/273.jpg","lrc":"https://oss.geek.xiaoww.com/music/273.lrc"},{"name":"私奔","artist":"曾轶可","url":"https://oss.geek.xiaoww.com/music/274.mp3","cover":"https://oss.geek.xiaoww.com/music/274.jpg","lrc":"https://oss.geek.xiaoww.com/music/274.lrc"},{"name":"过客","artist":"李圣杰","url":"https://oss.geek.xiaoww.com/music/275.mp3","cover":"https://oss.geek.xiaoww.com/music/275.jpg","lrc":"https://oss.geek.xiaoww.com/music/275.lrc"},{"name":"江南 (单曲)","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/276.mp3","cover":"https://oss.geek.xiaoww.com/music/276.jpg","lrc":"https://oss.geek.xiaoww.com/music/276.lrc"},{"name":"勇敢爱","artist":"Mi2","url":"https://oss.geek.xiaoww.com/music/277.mp3","cover":"https://oss.geek.xiaoww.com/music/277.jpg","lrc":"https://oss.geek.xiaoww.com/music/277.lrc"},{"name":"Let Me Love You (Live)","artist":"段奥娟","url":"https://oss.geek.xiaoww.com/music/278.mp3","cover":"https://oss.geek.xiaoww.com/music/278.jpg","lrc":"https://oss.geek.xiaoww.com/music/278.lrc"},{"name":"9277","artist":"深七","url":"https://oss.geek.xiaoww.com/music/279.mp3","cover":"https://oss.geek.xiaoww.com/music/279.jpg","lrc":"https://oss.geek.xiaoww.com/music/279.lrc"},{"name":"那些年","artist":"胡夏","url":"https://oss.geek.xiaoww.com/music/280.mp3","cover":"https://oss.geek.xiaoww.com/music/280.jpg","lrc":"https://oss.geek.xiaoww.com/music/280.lrc"},{"name":"恋愛サーキュレーション (恋爱循环)","artist":"花澤香菜 (はなざわ かな)","url":"https://oss.geek.xiaoww.com/music/281.mp3","cover":"https://oss.geek.xiaoww.com/music/281.jpg","lrc":"https://oss.geek.xiaoww.com/music/281.lrc"},{"name":"小幸运 (Live)","artist":"田馥甄","url":"https://oss.geek.xiaoww.com/music/282.mp3","cover":"https://oss.geek.xiaoww.com/music/282.jpg","lrc":"https://oss.geek.xiaoww.com/music/282.lrc"},{"name":"情人","artist":"蔡徐坤","url":"https://oss.geek.xiaoww.com/music/283.mp3","cover":"https://oss.geek.xiaoww.com/music/283.jpg","lrc":"https://oss.geek.xiaoww.com/music/283.lrc"},{"name":"非酋","artist":"薛明媛","url":"https://oss.geek.xiaoww.com/music/284.mp3","cover":"https://oss.geek.xiaoww.com/music/284.jpg","lrc":"https://oss.geek.xiaoww.com/music/284.lrc"},{"name":"我是我的情人","artist":"阿悄","url":"https://oss.geek.xiaoww.com/music/285.mp3","cover":"https://oss.geek.xiaoww.com/music/285.jpg","lrc":"https://oss.geek.xiaoww.com/music/285.lrc"},{"name":"童话镇","artist":"许娜","url":"https://oss.geek.xiaoww.com/music/286.mp3","cover":"https://oss.geek.xiaoww.com/music/286.jpg","lrc":"https://oss.geek.xiaoww.com/music/286.lrc"},{"name":"有何不可","artist":"许嵩","url":"https://oss.geek.xiaoww.com/music/287.mp3","cover":"https://oss.geek.xiaoww.com/music/287.jpg","lrc":"https://oss.geek.xiaoww.com/music/287.lrc"},{"name":"素颜","artist":"许嵩","url":"https://oss.geek.xiaoww.com/music/288.mp3","cover":"https://oss.geek.xiaoww.com/music/288.jpg","lrc":"https://oss.geek.xiaoww.com/music/288.lrc"},{"name":"爱的魔法","artist":"金沙","url":"https://oss.geek.xiaoww.com/music/289.mp3","cover":"https://oss.geek.xiaoww.com/music/289.jpg","lrc":"https://oss.geek.xiaoww.com/music/289.lrc"},{"name":"Geisha","artist":"Dino Sor","url":"https://oss.geek.xiaoww.com/music/290.mp3","cover":"https://oss.geek.xiaoww.com/music/290.jpg","lrc":"https://oss.geek.xiaoww.com/music/290.lrc"},{"name":"Wolves","artist":"Selena Gomez、marshmello","url":"https://oss.geek.xiaoww.com/music/291.mp3","cover":"https://oss.geek.xiaoww.com/music/291.jpg","lrc":"https://oss.geek.xiaoww.com/music/291.lrc"},{"name":"ヒトリゴト","artist":"ClariS (クラリス)","url":"https://oss.geek.xiaoww.com/music/292.mp3","cover":"https://oss.geek.xiaoww.com/music/292.jpg","lrc":"https://oss.geek.xiaoww.com/music/292.lrc"},{"name":"情话","artist":"徐良","url":"https://oss.geek.xiaoww.com/music/293.mp3","cover":"https://oss.geek.xiaoww.com/music/293.jpg","lrc":"https://oss.geek.xiaoww.com/music/293.lrc"},{"name":"刚好遇见你","artist":"李玉刚","url":"https://oss.geek.xiaoww.com/music/294.mp3","cover":"https://oss.geek.xiaoww.com/music/294.jpg","lrc":"https://oss.geek.xiaoww.com/music/294.lrc"},{"name":"A.I.N.Y.","artist":"G.E.M.邓紫棋","url":"https://oss.geek.xiaoww.com/music/295.mp3","cover":"https://oss.geek.xiaoww.com/music/295.jpg","lrc":"https://oss.geek.xiaoww.com/music/295.lrc"},{"name":"손을 잡아줘","artist":"April","url":"https://oss.geek.xiaoww.com/music/296.mp3","cover":"https://oss.geek.xiaoww.com/music/296.jpg","lrc":"https://oss.geek.xiaoww.com/music/296.lrc"},{"name":"팅커벨","artist":"April","url":"https://oss.geek.xiaoww.com/music/297.mp3","cover":"https://oss.geek.xiaoww.com/music/297.jpg","lrc":"https://oss.geek.xiaoww.com/music/297.lrc"},{"name":"曹操","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/298.mp3","cover":"https://oss.geek.xiaoww.com/music/298.jpg","lrc":"https://oss.geek.xiaoww.com/music/298.lrc"},{"name":"可惜没如果","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/299.mp3","cover":"https://oss.geek.xiaoww.com/music/299.jpg","lrc":"https://oss.geek.xiaoww.com/music/299.lrc"},{"name":"期待爱","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/300.mp3","cover":"https://oss.geek.xiaoww.com/music/300.jpg","lrc":"https://oss.geek.xiaoww.com/music/300.lrc"},{"name":"小酒窝","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/301.mp3","cover":"https://oss.geek.xiaoww.com/music/301.jpg","lrc":"https://oss.geek.xiaoww.com/music/301.lrc"},{"name":"一千年以后","artist":"林俊杰","url":"https://oss.geek.xiaoww.com/music/302.mp3","cover":"https://oss.geek.xiaoww.com/music/302.jpg","lrc":"https://oss.geek.xiaoww.com/music/302.lrc"},{"name":"欧若拉","artist":"张韶涵","url":"https://oss.geek.xiaoww.com/music/303.mp3","cover":"https://oss.geek.xiaoww.com/music/303.jpg","lrc":"https://oss.geek.xiaoww.com/music/303.lrc"},{"name":"亲爱的，那不是爱情","artist":"张韶涵","url":"https://oss.geek.xiaoww.com/music/304.mp3","cover":"https://oss.geek.xiaoww.com/music/304.jpg","lrc":"https://oss.geek.xiaoww.com/music/304.lrc"},{"name":"牛奶面包","artist":"杨紫","url":"https://oss.geek.xiaoww.com/music/305.mp3","cover":"https://oss.geek.xiaoww.com/music/305.jpg","lrc":"https://oss.geek.xiaoww.com/music/305.lrc"},{"name":"1起挺你 (天猫双11主题曲)","artist":"易烊千玺","url":"https://oss.geek.xiaoww.com/music/306.mp3","cover":"https://oss.geek.xiaoww.com/music/306.jpg","lrc":"https://oss.geek.xiaoww.com/music/306.lrc"},{"name":"My Boo","artist":"易烊千玺","url":"https://oss.geek.xiaoww.com/music/307.mp3","cover":"https://oss.geek.xiaoww.com/music/307.jpg","lrc":"https://oss.geek.xiaoww.com/music/307.lrc"},{"name":"女孩与王冠","artist":"赖美云","url":"https://oss.geek.xiaoww.com/music/308.mp3","cover":"https://oss.geek.xiaoww.com/music/308.jpg","lrc":"https://oss.geek.xiaoww.com/music/308.lrc"},{"name":"小小","artist":"赖美云","url":"https://oss.geek.xiaoww.com/music/309.mp3","cover":"https://oss.geek.xiaoww.com/music/309.jpg","lrc":"https://oss.geek.xiaoww.com/music/309.lrc"},{"name":"福气拱拱来","artist":"孟美岐","url":"https://oss.geek.xiaoww.com/music/310.mp3","cover":"https://oss.geek.xiaoww.com/music/310.jpg","lrc":"https://oss.geek.xiaoww.com/music/310.lrc"},{"name":"101个愿望","artist":"杨超越","url":"https://oss.geek.xiaoww.com/music/311.mp3","cover":"https://oss.geek.xiaoww.com/music/311.jpg","lrc":"https://oss.geek.xiaoww.com/music/311.lrc"},{"name":"了不起","artist":"火箭少女101赖美云","url":"https://oss.geek.xiaoww.com/music/312.mp3","cover":"https://oss.geek.xiaoww.com/music/312.jpg","lrc":"https://oss.geek.xiaoww.com/music/312.lrc"}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"工具":{"icon":"fa-regular fa-link","submenus":{"网络工具|Ping":"https://tools.pingdom.com/","网络工具|Internet Speed Test":"https://fast.com/","屏幕测试|在线屏幕检测":"https://screen.bmcx.com/","屏幕测试|屏幕色彩检测":"https://peiseka.com/pingmujiance.html","屏幕测试|坏点测试":"https://deadpixeltest.org/zh","屏幕测试|显示器检测":"https://www.qvdv.net/tools/qvdv-screen.html","帧率测试|3D Aim Trainer":"https://www.3daimtrainer.com/","帧率测试|UFO Test":"https://www.testufo.com","帧率测试|FPS Test":"https://fpstest.org","显卡测试|英大师显卡测试":"http://gpu.jy6d.com/","IP 查询|WHOER":"https://whoer.net/zh","IP 查询|IPinfo":"https://ipinfo.io/","IP 查询|IPdata":"https://ipdata.co/","IP 查询|BGP Toolkit":"https://bgp.he.net/","IP 查询|IP Info":"https://ip.voidsec.com/","IP 查询|IP Address Fraud Check":"https://scamalytics.com/ip","IP 查询|Pixelscan":"https://pixelscan.net/","IP 查询|BrowserScan":"https://www.browserscan.net/","VPN 检测|代理/VPN 检测":"https://proxy.888005.xyz/","VPN 检测|Live Proxy/VPN Detection":"https://proxy.incolumitas.com/proxy_detect.html","图像处理|iLoveIMG":"https://www.iloveimg.com/zh-cn","图像处理|改图宝":"https://www.gaitubao.com/","图像处理|压缩图":"https://www.yasuotu.com/"}},"服务":{"icon":"fa-regular fa-book","submenus":{"思远文文的直播":"https://live.xiaoqy.com/","思远文文的音乐":"https://music.xiaoww.com/","文文IT工具":"https://tools.xiaoww.com/","文文AI聊天":"https://aichat.xiaoww.com/","文文画板":"https://draw.xiaoww.com/","文文思维导图":"https://mindmap.xiaoww.com/","文文计算器":"https://calc.xiaoww.com/","文文单词打字机":"https://qwerty.xiaoww.com/","文文随机祝福语":"https://www.xiaoww.com/2025_blessings.html"}},"关于":{"icon":"fa-regular fa-user","submenus":{"我":"/about","小红书":"https://www.xiaohongshu.com/user/profile/61ca59770000000021029d37","BiliBili":"https://space.bilibili.com/23232348"}},"状态":{"path":"https://status.xiaoww.com/","icon":"fa-regular fa-chart-bar"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"说说":{"path":"/shuoshuo/","icon":"fa-regular fa-message"},"相册":{"path":"/masonry/","icon":"fa-regular fa-image"},"追剧（尽情期待）":{"path":"/tv/","icon":"fa-regular fa-tv"},"书籍（尽情期待）":{"path":"/book/","icon":"fa-regular fa-book"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":5},"tags":{"enable":true,"limit":5}},"footerStart":"2025/5/20 0:00:00"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Welcome to Wenwen&#39;s technical blog | 欢迎来到思远文文的技术博客
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                思远文文的技术博客 - 镜像站
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    工具
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://tools.pingdom.com/">
+                                                    网络工具|PING
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://fast.com/">
+                                                    网络工具|INTERNET SPEED TEST
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://screen.bmcx.com/">
+                                                    屏幕测试|在线屏幕检测
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://peiseka.com/pingmujiance.html">
+                                                    屏幕测试|屏幕色彩检测
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://deadpixeltest.org/zh">
+                                                    屏幕测试|坏点测试
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.qvdv.net/tools/qvdv-screen.html">
+                                                    屏幕测试|显示器检测
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.3daimtrainer.com/">
+                                                    帧率测试|3D AIM TRAINER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.testufo.com">
+                                                    帧率测试|UFO TEST
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://fpstest.org">
+                                                    帧率测试|FPS TEST
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="http://gpu.jy6d.com/">
+                                                    显卡测试|英大师显卡测试
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://whoer.net/zh">
+                                                    IP 查询|WHOER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://ipinfo.io/">
+                                                    IP 查询|IPINFO
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://ipdata.co/">
+                                                    IP 查询|IPDATA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://bgp.he.net/">
+                                                    IP 查询|BGP TOOLKIT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://ip.voidsec.com/">
+                                                    IP 查询|IP INFO
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://scamalytics.com/ip">
+                                                    IP 查询|IP ADDRESS FRAUD CHECK
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://pixelscan.net/">
+                                                    IP 查询|PIXELSCAN
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.browserscan.net/">
+                                                    IP 查询|BROWSERSCAN
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://proxy.888005.xyz/">
+                                                    VPN 检测|代理/VPN 检测
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://proxy.incolumitas.com/proxy_detect.html">
+                                                    VPN 检测|LIVE PROXY/VPN DETECTION
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.iloveimg.com/zh-cn">
+                                                    图像处理|ILOVEIMG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.gaitubao.com/">
+                                                    图像处理|改图宝
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.yasuotu.com/">
+                                                    图像处理|压缩图
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-book fa-fw"></i>
+                                    服务
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://live.xiaoqy.com/">
+                                                    思远文文的直播
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://music.xiaoww.com/">
+                                                    思远文文的音乐
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://tools.xiaoww.com/">
+                                                    文文IT工具
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://aichat.xiaoww.com/">
+                                                    文文AI聊天
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://draw.xiaoww.com/">
+                                                    文文画板
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://mindmap.xiaoww.com/">
+                                                    文文思维导图
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://calc.xiaoww.com/">
+                                                    文文计算器
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://qwerty.xiaoww.com/">
+                                                    文文单词打字机
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.xiaoww.com/2025_blessings.html">
+                                                    文文随机祝福语
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    我
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/61ca59770000000021029d37">
+                                                    小红书
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://space.bilibili.com/23232348">
+                                                    BILIBILI
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://status.xiaoww.com/"
+                                        >
+                                    <i class="fa-regular fa-chart-bar fa-fw"></i>
+                                    状态
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-工具"
+                        >
+                            <span>
+                                工具
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-工具">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://tools.pingdom.com/">网络工具|PING</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://fast.com/">网络工具|INTERNET SPEED TEST</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://screen.bmcx.com/">屏幕测试|在线屏幕检测</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://peiseka.com/pingmujiance.html">屏幕测试|屏幕色彩检测</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://deadpixeltest.org/zh">屏幕测试|坏点测试</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.qvdv.net/tools/qvdv-screen.html">屏幕测试|显示器检测</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.3daimtrainer.com/">帧率测试|3D AIM TRAINER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.testufo.com">帧率测试|UFO TEST</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://fpstest.org">帧率测试|FPS TEST</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="http://gpu.jy6d.com/">显卡测试|英大师显卡测试</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://whoer.net/zh">IP 查询|WHOER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://ipinfo.io/">IP 查询|IPINFO</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://ipdata.co/">IP 查询|IPDATA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://bgp.he.net/">IP 查询|BGP TOOLKIT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://ip.voidsec.com/">IP 查询|IP INFO</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://scamalytics.com/ip">IP 查询|IP ADDRESS FRAUD CHECK</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://pixelscan.net/">IP 查询|PIXELSCAN</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.browserscan.net/">IP 查询|BROWSERSCAN</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://proxy.888005.xyz/">VPN 检测|代理/VPN 检测</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://proxy.incolumitas.com/proxy_detect.html">VPN 检测|LIVE PROXY/VPN DETECTION</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.iloveimg.com/zh-cn">图像处理|ILOVEIMG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.gaitubao.com/">图像处理|改图宝</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.yasuotu.com/">图像处理|压缩图</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-服务"
+                        >
+                            <span>
+                                服务
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-服务">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://live.xiaoqy.com/">思远文文的直播</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://music.xiaoww.com/">思远文文的音乐</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://tools.xiaoww.com/">文文IT工具</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://aichat.xiaoww.com/">文文AI聊天</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://draw.xiaoww.com/">文文画板</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://mindmap.xiaoww.com/">文文思维导图</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://calc.xiaoww.com/">文文计算器</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://qwerty.xiaoww.com/">文文单词打字机</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.xiaoww.com/2025_blessings.html">文文随机祝福语</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-关于"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-关于">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">我</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/61ca59770000000021029d37">小红书</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://space.bilibili.com/23232348">BILIBILI</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://status.xiaoww.com/"
+                        >
+                            <span>
+                                状态
+                            </span>
+                            
+                                <i class="fa-regular fa-chart-bar fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/shuoshuo/"
+                        >
+                            <span>说说</span>
+                            <i class="fa-regular fa-message fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/masonry/"
+                        >
+                            <span>相册</span>
+                            <i class="fa-regular fa-image fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tv/"
+                        >
+                            <span>追剧（尽情期待）</span>
+                            <i class="fa-regular fa-tv fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/book/"
+                        >
+                            <span>书籍（尽情期待）</span>
+                            <i class="fa-regular fa-book fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">30</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+		<div id="announcement-insert"></div>
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">sed命令</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/xiaoww-blog-logo.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Allen Shaw</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-18 14:16:32</span>
+        <span class="mobile">2025-07-18 14:16:32</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-06-01 18:57:15</span>
+            <span class="mobile">2025-06-01 18:57:15</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Command/">Command</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>sed是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。</p>
+<h3 id="sed的选项、命令、替换标记"><a href="#sed的选项、命令、替换标记" class="headerlink" title="sed的选项、命令、替换标记"></a>sed的选项、命令、替换标记</h3><h5 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed [options] &#x27;command&#x27; file(s)</span><br><span class="line">sed [options] -f scriptfile file(s)</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-e&lt;script&gt;或--expression=&lt;script&gt;：以选项中的指定的script来处理输入的文本文件；</span><br><span class="line">-f&lt;script文件&gt;或--file=&lt;script文件&gt;：以选项中指定的script文件来处理输入的文本文件；</span><br><span class="line">-h或--help：显示帮助；</span><br><span class="line">-n或--quiet或——silent：仅显示script处理后的结果；</span><br><span class="line">-V或--version：显示版本信息。</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3></blockquote>
+<p>文件：指定待处理的文本文件列表。</p>
+<blockquote>
+<h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令"></a>sed命令</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a\ 在当前行下面插入文本。</span><br><span class="line">i\ 在当前行上面插入文本。</span><br><span class="line">c\ 把选定的行改为新的文本。</span><br><span class="line">d 删除，删除选择的行。</span><br><span class="line">D 删除模板块的第一行。</span><br><span class="line">s 替换指定字符</span><br><span class="line">h 拷贝模板块的内容到内存中的缓冲区。</span><br><span class="line">H 追加模板块的内容到内存中的缓冲区。</span><br><span class="line">g 获得内存缓冲区的内容，并替代当前模板块中的文本。</span><br><span class="line">G 获得内存缓冲区的内容，并追加到当前模板块文本的后面。</span><br><span class="line">l 列表不能打印字符的清单。</span><br><span class="line">n 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。</span><br><span class="line">N 追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。</span><br><span class="line">p 打印模板块的行。</span><br><span class="line">P(大写) 打印模板块的第一行。</span><br><span class="line">q 退出Sed。</span><br><span class="line">b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。</span><br><span class="line">r file 从file中读行。</span><br><span class="line">t label if分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。</span><br><span class="line">T label 错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。</span><br><span class="line">w file 写并追加模板块到file末尾。  </span><br><span class="line">W file 写并追加模板块的第一行到file末尾。  </span><br><span class="line">! 表示后面的命令对所有没有被选定的行发生作用。  </span><br><span class="line">= 打印当前行号码。  </span><br><span class="line"># 把注释扩展到下一个换行符以前。</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="sed替换标记"><a href="#sed替换标记" class="headerlink" title="sed替换标记"></a>sed替换标记</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">g 表示行内全面替换。  </span><br><span class="line">p 表示打印行。  </span><br><span class="line">w 表示把行写入一个文件。  </span><br><span class="line">x 表示互换模板块中的文本和缓冲区中的文本。  </span><br><span class="line">y 表示把一个字符翻译为另外的字符（但是不用于正则表达式）</span><br><span class="line">\1 子串匹配标记</span><br><span class="line">&amp; 已匹配字符串标记</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="sed元字符集"><a href="#sed元字符集" class="headerlink" title="sed元字符集"></a>sed元字符集</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">^ 匹配行开始，如：/^sed/匹配所有以sed开头的行。</span><br><span class="line">$ 匹配行结束，如：/sed$/匹配所有以sed结尾的行。</span><br><span class="line">. 匹配一个非换行符的任意字符，如：/s.d/匹配s后接一个任意字符，最后是d。</span><br><span class="line">* 匹配0个或多个字符，如：/*sed/匹配所有模板是一个或多个空格后紧跟sed的行。</span><br><span class="line">[] 匹配一个指定范围内的字符，如/[ss]ed/匹配sed和Sed。  </span><br><span class="line">[^] 匹配一个不在指定范围内的字符，如：/[^A-RT-Z]ed/匹配不包含A-R和T-Z的一个字母开头，紧跟ed的行。</span><br><span class="line">\(..\) 匹配子串，保存匹配的字符，如s/\(love\)able/\1rs，loveable被替换成lovers。</span><br><span class="line">&amp; 保存搜索字符用来替换其他字符，如s/love/**&amp;**/，love这成**love**。</span><br><span class="line">\&lt; 匹配单词的开始，如:/\&lt;love/匹配包含以love开头的单词的行。</span><br><span class="line">\&gt; 匹配单词的结束，如/love\&gt;/匹配包含以love结尾的单词的行。</span><br><span class="line">x\&#123;m\&#125; 重复字符x，m次，如：/0\&#123;5\&#125;/匹配包含5个0的行。</span><br><span class="line">x\&#123;m,\&#125; 重复字符x，至少m次，如：/0\&#123;5,\&#125;/匹配至少有5个0的行。</span><br><span class="line">x\&#123;m,n\&#125; 重复字符x，至少m次，不多于n次，如：/0\&#123;5,10\&#125;/匹配5~10个0的行。</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="sed用法实例"><a href="#sed用法实例" class="headerlink" title="sed用法实例"></a>sed用法实例</h3><blockquote>
+<h3 id="替换操作：s命令"><a href="#替换操作：s命令" class="headerlink" title="替换操作：s命令"></a>替换操作：s命令</h3></blockquote>
+<h5 id="替换文本中的字符串："><a href="#替换文本中的字符串：" class="headerlink" title="替换文本中的字符串："></a>替换文本中的字符串：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/book/books/&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="n选项和p命令一起使用表示只打印那些发生替换的行："><a href="#n选项和p命令一起使用表示只打印那些发生替换的行：" class="headerlink" title="-n选项和p命令一起使用表示只打印那些发生替换的行："></a><strong>-n选项</strong>和<strong>p命令</strong>一起使用表示只打印那些发生替换的行：</h5><p><code>sed -n &#39;s/test/TEST/p&#39; file</code></p>
+<h5 id="直接编辑文件选项-i，会匹配file文件中每一行的第一个book替换为books："><a href="#直接编辑文件选项-i，会匹配file文件中每一行的第一个book替换为books：" class="headerlink" title="直接编辑文件选项-i，会匹配file文件中每一行的第一个book替换为books："></a>直接编辑文件<strong>选项-i</strong>，会匹配file文件中每一行的第一个book替换为books：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/book/books/g&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="全面替换标记g"><a href="#全面替换标记g" class="headerlink" title="全面替换标记g"></a>全面替换标记g</h3></blockquote>
+<h5 id="使用后缀-g-标记会替换每一行中的所有匹配："><a href="#使用后缀-g-标记会替换每一行中的所有匹配：" class="headerlink" title="使用后缀 &#x2F;g 标记会替换每一行中的所有匹配："></a>使用后缀 &#x2F;g 标记会替换每一行中的所有匹配：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/book/books/g&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="当需要从第N处匹配开始替换时，可以使用-Ng："><a href="#当需要从第N处匹配开始替换时，可以使用-Ng：" class="headerlink" title="当需要从第N处匹配开始替换时，可以使用 &#x2F;Ng："></a>当需要从第N处匹配开始替换时，可以使用 &#x2F;Ng：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo sksksksksksk | sed &#x27;s/sk/SK/2g&#x27;</span><br><span class="line">skSKSKSKSKSK</span><br><span class="line"></span><br><span class="line">echo sksksksksksk | sed &#x27;s/sk/SK/3g&#x27;</span><br><span class="line">skskSKSKSKSK</span><br><span class="line"></span><br><span class="line">echo sksksksksksk | sed &#x27;s/sk/SK/4g&#x27;</span><br><span class="line">skskskSKSKSK</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="定界符"><a href="#定界符" class="headerlink" title="定界符"></a>定界符</h3></blockquote>
+<h5 id="以上命令中字符-在sed中作为定界符使用，也可以使用任意的定界符："><a href="#以上命令中字符-在sed中作为定界符使用，也可以使用任意的定界符：" class="headerlink" title="以上命令中字符 &#x2F; 在sed中作为定界符使用，也可以使用任意的定界符："></a>以上命令中字符 &#x2F; 在sed中作为定界符使用，也可以使用任意的定界符：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s:test:TEXT:g&#x27;</span><br><span class="line">sed &#x27;s|test|TEXT|g&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="定界符出现在样式内部时，需要进行转义："><a href="#定界符出现在样式内部时，需要进行转义：" class="headerlink" title="定界符出现在样式内部时，需要进行转义："></a>定界符出现在样式内部时，需要进行转义：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/\/bin/\/usr\/local\/bin/g&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="删除操作：d命令"><a href="#删除操作：d命令" class="headerlink" title="删除操作：d命令"></a>删除操作：d命令</h3></blockquote>
+<h5 id="删除空白行："><a href="#删除空白行：" class="headerlink" title="删除空白行："></a>删除空白行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/^$/d&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="删除文件的第2行："><a href="#删除文件的第2行：" class="headerlink" title="删除文件的第2行："></a>删除文件的第2行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;2d&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="删除文件的第2行到末尾所有行："><a href="#删除文件的第2行到末尾所有行：" class="headerlink" title="删除文件的第2行到末尾所有行："></a>删除文件的第2行到末尾所有行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;2,$d&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="删除文件最后一行："><a href="#删除文件最后一行：" class="headerlink" title="删除文件最后一行："></a>删除文件最后一行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;$d&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="删除文件中所有开头是test的行："><a href="#删除文件中所有开头是test的行：" class="headerlink" title="删除文件中所有开头是test的行："></a>删除文件中所有开头是test的行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/^test/&#x27;d file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="已匹配字符串标记"><a href="#已匹配字符串标记" class="headerlink" title="已匹配字符串标记&amp;"></a>已匹配字符串标记&amp;</h3></blockquote>
+<h5 id="正则表达式-w-匹配每一个单词，使用-替换它，-对应于之前所匹配到的单词："><a href="#正则表达式-w-匹配每一个单词，使用-替换它，-对应于之前所匹配到的单词：" class="headerlink" title="正则表达式 \w+ 匹配每一个单词，使用 [&amp;] 替换它，&amp; 对应于之前所匹配到的单词："></a>正则表达式 \w+ 匹配每一个单词，使用 [&amp;] 替换它，&amp; 对应于之前所匹配到的单词：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo this is a test line | sed &#x27;s/\w\+/[&amp;]/g&#x27;</span><br><span class="line">[this] [is] [a] [test] [line]</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="所有以192-168-0-1开头的行都会被替换成它自已加localhost："><a href="#所有以192-168-0-1开头的行都会被替换成它自已加localhost：" class="headerlink" title="所有以192.168.0.1开头的行都会被替换成它自已加localhost："></a>所有以192.168.0.1开头的行都会被替换成它自已加localhost：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/^192.168.0.1/&amp;localhost/&#x27; file</span><br><span class="line">192.168.0.1localhost</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="子串匹配标记-1"><a href="#子串匹配标记-1" class="headerlink" title="子串匹配标记\1"></a>子串匹配标记\1</h3></blockquote>
+<h5 id="匹配给定样式的其中一部分："><a href="#匹配给定样式的其中一部分：" class="headerlink" title="匹配给定样式的其中一部分："></a>匹配给定样式的其中一部分：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo this is digit 7 in a number | sed &#x27;s/digit \([0-9]\)/\1/&#x27;</span><br><span class="line">this is 7 in a number</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="命令中-digit-7，被替换成了-7。样式匹配到的子串是-7，-用于匹配子串，对于匹配到的第一个子串就标记为-1，依此类推匹配到的第二个结果就是-2，例如："><a href="#命令中-digit-7，被替换成了-7。样式匹配到的子串是-7，-用于匹配子串，对于匹配到的第一个子串就标记为-1，依此类推匹配到的第二个结果就是-2，例如：" class="headerlink" title="命令中 digit 7，被替换成了 7。样式匹配到的子串是 7，(..) 用于匹配子串，对于匹配到的第一个子串就标记为 \1，依此类推匹配到的第二个结果就是 \2，例如："></a>命令中 digit 7，被替换成了 7。样式匹配到的子串是 7，(..) 用于匹配子串，对于匹配到的第一个子串就标记为 <strong>\1</strong>，依此类推匹配到的第二个结果就是 <strong>\2</strong>，例如：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo aaa BBB | sed &#x27;s/\([a-z]\+\) \([A-Z]\+\)/\2 \1/&#x27;</span><br><span class="line">BBB aaa</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="love被标记为1，所有loveable会被替换成lovers，并打印出来："><a href="#love被标记为1，所有loveable会被替换成lovers，并打印出来：" class="headerlink" title="love被标记为1，所有loveable会被替换成lovers，并打印出来："></a>love被标记为1，所有loveable会被替换成lovers，并打印出来：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;s/\(love\)able/\1rs/p&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="组合多个表达式"><a href="#组合多个表达式" class="headerlink" title="组合多个表达式"></a>组合多个表达式</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;表达式&#x27; | sed &#x27;表达式&#x27;</span><br><span class="line"></span><br><span class="line">等价于：</span><br><span class="line"></span><br><span class="line">sed &#x27;表达式; 表达式&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3></blockquote>
+<h5 id="sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。"><a href="#sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。" class="headerlink" title="sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。"></a>sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test=hello</span><br><span class="line">echo hello WORLD | sed &quot;s/$test/HELLO&quot;</span><br><span class="line">HELLO WORLD</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="选定行的范围：-（逗号）"><a href="#选定行的范围：-（逗号）" class="headerlink" title="选定行的范围：,（逗号）"></a>选定行的范围：,（逗号）</h3></blockquote>
+<h5 id="所有在模板test和check所确定的范围内的行都被打印："><a href="#所有在模板test和check所确定的范围内的行都被打印：" class="headerlink" title="所有在模板test和check所确定的范围内的行都被打印："></a>所有在模板test和check所确定的范围内的行都被打印：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;/test/,/check/p&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="打印从第5行开始到第一个包含以test开始的行之间的所有行："><a href="#打印从第5行开始到第一个包含以test开始的行之间的所有行：" class="headerlink" title="打印从第5行开始到第一个包含以test开始的行之间的所有行："></a>打印从第5行开始到第一个包含以test开始的行之间的所有行：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;5,/^test/p&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="对于模板test和west之间的行，每行的末尾用字符串aaa-bbb替换："><a href="#对于模板test和west之间的行，每行的末尾用字符串aaa-bbb替换：" class="headerlink" title="对于模板test和west之间的行，每行的末尾用字符串aaa bbb替换："></a>对于模板test和west之间的行，每行的末尾用字符串aaa bbb替换：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/test/,/west/s/$/aaa bbb/&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="多点编辑：e命令"><a href="#多点编辑：e命令" class="headerlink" title="多点编辑：e命令"></a>多点编辑：e命令</h3></blockquote>
+<h5 id="e选项允许在同一行里执行多条命令："><a href="#e选项允许在同一行里执行多条命令：" class="headerlink" title="-e选项允许在同一行里执行多条命令："></a>-e选项允许在同一行里执行多条命令：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;1,5d&#x27; -e &#x27;s/test/check/&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="上面sed表达式的第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。"><a href="#上面sed表达式的第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。" class="headerlink" title="上面sed表达式的第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。"></a>上面sed表达式的第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。</h5><h5 id="和-e-等价的命令是-–expression："><a href="#和-e-等价的命令是-–expression：" class="headerlink" title="和 -e 等价的命令是 –expression："></a>和 -e 等价的命令是 –expression：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed --expression=&#x27;s/test/check/&#x27; --expression=&#x27;/love/d&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="从文件读入：r命令"><a href="#从文件读入：r命令" class="headerlink" title="从文件读入：r命令"></a>从文件读入：r命令</h3></blockquote>
+<h5 id="file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面："><a href="#file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面：" class="headerlink" title="file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面："></a>file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/test/r file&#x27; filename</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="写入文件：w命令"><a href="#写入文件：w命令" class="headerlink" title="写入文件：w命令"></a>写入文件：w命令</h3></blockquote>
+<h5 id="在example中所有包含test的行都被写入file里："><a href="#在example中所有包含test的行都被写入file里：" class="headerlink" title="在example中所有包含test的行都被写入file里："></a>在example中所有包含test的行都被写入file里：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;/test/w file&#x27; example</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="追加（行下）：a-命令"><a href="#追加（行下）：a-命令" class="headerlink" title="追加（行下）：a\命令"></a>追加（行下）：a\命令</h3></blockquote>
+<h5 id="将-this-is-a-test-line-追加到-以test-开头的行后面："><a href="#将-this-is-a-test-line-追加到-以test-开头的行后面：" class="headerlink" title="将 this is a test line 追加到 以test 开头的行后面："></a>将 this is a test line 追加到 以test 开头的行后面：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/^test/a\this is a test line&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="在-test-conf-文件第2行之后插入-this-is-a-test-line："><a href="#在-test-conf-文件第2行之后插入-this-is-a-test-line：" class="headerlink" title="在 test.conf 文件第2行之后插入 this is a test line："></a>在 test.conf 文件第2行之后插入 this is a test line：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;2a\this is a test line&#x27; test.conf</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="插入（行上）：i-命令"><a href="#插入（行上）：i-命令" class="headerlink" title="插入（行上）：i\命令"></a>插入（行上）：i\命令</h3></blockquote>
+<h5 id="将-this-is-a-test-line-追加到以test开头的行前面："><a href="#将-this-is-a-test-line-追加到以test开头的行前面：" class="headerlink" title="将 this is a test line 追加到以test开头的行前面："></a>将 this is a test line 追加到以test开头的行前面：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/^test/i\this is a test line&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="在test-conf文件第5行之前插入this-is-a-test-line："><a href="#在test-conf文件第5行之前插入this-is-a-test-line：" class="headerlink" title="在test.conf文件第5行之前插入this is a test line："></a>在test.conf文件第5行之前插入this is a test line：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;5i\this is a test line&#x27; test.conf</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="下一个：n命令"><a href="#下一个：n命令" class="headerlink" title="下一个：n命令"></a>下一个：n命令</h3></blockquote>
+<h5 id="如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续："><a href="#如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续：" class="headerlink" title="如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续："></a>如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;/test/&#123; n; s/aa/bb/; &#125;&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="变形：y命令"><a href="#变形：y命令" class="headerlink" title="变形：y命令"></a>变形：y命令</h3></blockquote>
+<h5 id="把1-10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令："><a href="#把1-10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令：" class="headerlink" title="把1~10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令："></a>把1~10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;1,10y/abcde/ABCDE/&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="退出：q命令"><a href="#退出：q命令" class="headerlink" title="退出：q命令"></a>退出：q命令</h3></blockquote>
+<h5 id="打印完第10行后，退出sed"><a href="#打印完第10行后，退出sed" class="headerlink" title="打印完第10行后，退出sed"></a>打印完第10行后，退出sed</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;10q&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="保持和获取：h命令和G命令"><a href="#保持和获取：h命令和G命令" class="headerlink" title="保持和获取：h命令和G命令"></a>保持和获取：h命令和G命令</h3></blockquote>
+<h5 id="在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将-打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。"><a href="#在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将-打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。" class="headerlink" title="在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。"></a>在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;/test/h&#x27; -e &#x27;$G&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。"><a href="#在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。" class="headerlink" title="在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。"></a>在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。</h5><blockquote>
+<h3 id="保持和互换：h命令和x命令"><a href="#保持和互换：h命令和x命令" class="headerlink" title="保持和互换：h命令和x命令"></a>保持和互换：h命令和x命令</h3></blockquote>
+<h5 id="互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换："><a href="#互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换：" class="headerlink" title="互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换："></a>互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;/test/h&#x27; -e &#x27;/check/x&#x27; file</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="脚本scriptfile"><a href="#脚本scriptfile" class="headerlink" title="脚本scriptfile"></a>脚本scriptfile</h3></blockquote>
+<h5 id="sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以-开头的行为注释行，且不能跨行。"><a href="#sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以-开头的行为注释行，且不能跨行。" class="headerlink" title="sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以#开头的行为注释行，且不能跨行。"></a>sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以#开头的行为注释行，且不能跨行。</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [options] -f scriptfile file(s)</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="打印奇数行或偶数行"><a href="#打印奇数行或偶数行" class="headerlink" title="打印奇数行或偶数行"></a>打印奇数行或偶数行</h3></blockquote>
+<h5 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;p;n&#x27; test.txt  #奇数行</span><br><span class="line">sed -n &#x27;n;p&#x27; test.txt  #偶数行</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -n &#x27;1~2p&#x27; test.txt  #奇数行</span><br><span class="line">sed -n &#x27;2~2p&#x27; test.txt  #偶数行</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h3 id="打印匹配字符串的下一行"><a href="#打印匹配字符串的下一行" class="headerlink" title="打印匹配字符串的下一行"></a>打印匹配字符串的下一行</h3></blockquote>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -A 1 SCC URFILE</span><br><span class="line">sed -n &#x27;/SCC/&#123;n;p&#125;&#x27; URFILE</span><br><span class="line">awk &#x27;/SCC/&#123;getline; print&#125;&#x27; URFILE</span><br></pre></td></tr></table></figure></div>
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> sed命令</li>
+        <li><strong>作者:</strong> Allen Shaw</li>
+        <li><strong>创建于
+                :</strong> 2025-07-18 14:16:32</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-06-01 18:57:15
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://mirror.geek.xiaoww.com/sed命令/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Linux/">#Linux</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Command/">#Command</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/%E5%88%A9%E7%94%A8oh-my-zsh%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E7%BB%88%E7%AB%AF/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">利用oh-my-zsh打造漂亮的终端</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/WordPress%20%E2%80%93%20%E7%AB%99%E7%82%B9%E5%BA%95%E9%83%A8%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">WordPress – 站点底部显示站点运行时间</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">sed命令</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sed%E7%9A%84%E9%80%89%E9%A1%B9%E3%80%81%E5%91%BD%E4%BB%A4%E3%80%81%E6%9B%BF%E6%8D%A2%E6%A0%87%E8%AE%B0"><span class="nav-text">sed的选项、命令、替换标记</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-text">命令格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B9"><span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed%E5%91%BD%E4%BB%A4"><span class="nav-text">sed命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed%E6%9B%BF%E6%8D%A2%E6%A0%87%E8%AE%B0"><span class="nav-text">sed替换标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed%E5%85%83%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-text">sed元字符集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed%E7%94%A8%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="nav-text">sed用法实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E6%93%8D%E4%BD%9C%EF%BC%9As%E5%91%BD%E4%BB%A4"><span class="nav-text">替换操作：s命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E6%96%87%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A"><span class="nav-text">替换文本中的字符串：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#n%E9%80%89%E9%A1%B9%E5%92%8Cp%E5%91%BD%E4%BB%A4%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8%E8%A1%A8%E7%A4%BA%E5%8F%AA%E6%89%93%E5%8D%B0%E9%82%A3%E4%BA%9B%E5%8F%91%E7%94%9F%E6%9B%BF%E6%8D%A2%E7%9A%84%E8%A1%8C%EF%BC%9A"><span class="nav-text">-n选项和p命令一起使用表示只打印那些发生替换的行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%E9%80%89%E9%A1%B9-i%EF%BC%8C%E4%BC%9A%E5%8C%B9%E9%85%8Dfile%E6%96%87%E4%BB%B6%E4%B8%AD%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAbook%E6%9B%BF%E6%8D%A2%E4%B8%BAbooks%EF%BC%9A"><span class="nav-text">直接编辑文件选项-i，会匹配file文件中每一行的第一个book替换为books：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%9D%A2%E6%9B%BF%E6%8D%A2%E6%A0%87%E8%AE%B0g"><span class="nav-text">全面替换标记g</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%90%8E%E7%BC%80-g-%E6%A0%87%E8%AE%B0%E4%BC%9A%E6%9B%BF%E6%8D%A2%E6%AF%8F%E4%B8%80%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="nav-text">使用后缀 &#x2F;g 标记会替换每一行中的所有匹配：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%93%E9%9C%80%E8%A6%81%E4%BB%8E%E7%AC%ACN%E5%A4%84%E5%8C%B9%E9%85%8D%E5%BC%80%E5%A7%8B%E6%9B%BF%E6%8D%A2%E6%97%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8-Ng%EF%BC%9A"><span class="nav-text">当需要从第N处匹配开始替换时，可以使用 &#x2F;Ng：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%95%8C%E7%AC%A6"><span class="nav-text">定界符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E5%91%BD%E4%BB%A4%E4%B8%AD%E5%AD%97%E7%AC%A6-%E5%9C%A8sed%E4%B8%AD%E4%BD%9C%E4%B8%BA%E5%AE%9A%E7%95%8C%E7%AC%A6%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%BB%E6%84%8F%E7%9A%84%E5%AE%9A%E7%95%8C%E7%AC%A6%EF%BC%9A"><span class="nav-text">以上命令中字符 &#x2F; 在sed中作为定界符使用，也可以使用任意的定界符：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E7%95%8C%E7%AC%A6%E5%87%BA%E7%8E%B0%E5%9C%A8%E6%A0%B7%E5%BC%8F%E5%86%85%E9%83%A8%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89%EF%BC%9A"><span class="nav-text">定界符出现在样式内部时，需要进行转义：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C%EF%BC%9Ad%E5%91%BD%E4%BB%A4"><span class="nav-text">删除操作：d命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%A9%BA%E7%99%BD%E8%A1%8C%EF%BC%9A"><span class="nav-text">删除空白行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E7%AC%AC2%E8%A1%8C%EF%BC%9A"><span class="nav-text">删除文件的第2行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E7%AC%AC2%E8%A1%8C%E5%88%B0%E6%9C%AB%E5%B0%BE%E6%89%80%E6%9C%89%E8%A1%8C%EF%BC%9A"><span class="nav-text">删除文件的第2行到末尾所有行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%EF%BC%9A"><span class="nav-text">删除文件最后一行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E4%B8%AD%E6%89%80%E6%9C%89%E5%BC%80%E5%A4%B4%E6%98%AFtest%E7%9A%84%E8%A1%8C%EF%BC%9A"><span class="nav-text">删除文件中所有开头是test的行：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%87%E8%AE%B0"><span class="nav-text">已匹配字符串标记&amp;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-w-%E5%8C%B9%E9%85%8D%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%EF%BC%8C%E4%BD%BF%E7%94%A8-%E6%9B%BF%E6%8D%A2%E5%AE%83%EF%BC%8C-%E5%AF%B9%E5%BA%94%E4%BA%8E%E4%B9%8B%E5%89%8D%E6%89%80%E5%8C%B9%E9%85%8D%E5%88%B0%E7%9A%84%E5%8D%95%E8%AF%8D%EF%BC%9A"><span class="nav-text">正则表达式 \w+ 匹配每一个单词，使用 [&amp;] 替换它，&amp; 对应于之前所匹配到的单词：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E4%BB%A5192-168-0-1%E5%BC%80%E5%A4%B4%E7%9A%84%E8%A1%8C%E9%83%BD%E4%BC%9A%E8%A2%AB%E6%9B%BF%E6%8D%A2%E6%88%90%E5%AE%83%E8%87%AA%E5%B7%B2%E5%8A%A0localhost%EF%BC%9A"><span class="nav-text">所有以192.168.0.1开头的行都会被替换成它自已加localhost：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%B8%B2%E5%8C%B9%E9%85%8D%E6%A0%87%E8%AE%B0-1"><span class="nav-text">子串匹配标记\1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%BB%99%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%85%B6%E4%B8%AD%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-text">匹配给定样式的其中一部分：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E4%B8%AD-digit-7%EF%BC%8C%E8%A2%AB%E6%9B%BF%E6%8D%A2%E6%88%90%E4%BA%86-7%E3%80%82%E6%A0%B7%E5%BC%8F%E5%8C%B9%E9%85%8D%E5%88%B0%E7%9A%84%E5%AD%90%E4%B8%B2%E6%98%AF-7%EF%BC%8C-%E7%94%A8%E4%BA%8E%E5%8C%B9%E9%85%8D%E5%AD%90%E4%B8%B2%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%8C%B9%E9%85%8D%E5%88%B0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%90%E4%B8%B2%E5%B0%B1%E6%A0%87%E8%AE%B0%E4%B8%BA-1%EF%BC%8C%E4%BE%9D%E6%AD%A4%E7%B1%BB%E6%8E%A8%E5%8C%B9%E9%85%8D%E5%88%B0%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BB%93%E6%9E%9C%E5%B0%B1%E6%98%AF-2%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A"><span class="nav-text">命令中 digit 7，被替换成了 7。样式匹配到的子串是 7，(..) 用于匹配子串，对于匹配到的第一个子串就标记为 \1，依此类推匹配到的第二个结果就是 \2，例如：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#love%E8%A2%AB%E6%A0%87%E8%AE%B0%E4%B8%BA1%EF%BC%8C%E6%89%80%E6%9C%89loveable%E4%BC%9A%E8%A2%AB%E6%9B%BF%E6%8D%A2%E6%88%90lovers%EF%BC%8C%E5%B9%B6%E6%89%93%E5%8D%B0%E5%87%BA%E6%9D%A5%EF%BC%9A"><span class="nav-text">love被标记为1，所有loveable会被替换成lovers，并打印出来：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E5%A4%9A%E4%B8%AA%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">组合多个表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sed%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8D%95%E5%BC%95%E5%8F%B7%E6%9D%A5%E5%BC%95%E7%94%A8%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%86%85%E9%83%A8%E5%8C%85%E5%90%AB%E5%8F%98%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%B0%B1%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E5%8F%8C%E5%BC%95%E5%8F%B7%E3%80%82"><span class="nav-text">sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E5%AE%9A%E8%A1%8C%E7%9A%84%E8%8C%83%E5%9B%B4%EF%BC%9A-%EF%BC%88%E9%80%97%E5%8F%B7%EF%BC%89"><span class="nav-text">选定行的范围：,（逗号）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E5%9C%A8%E6%A8%A1%E6%9D%BFtest%E5%92%8Ccheck%E6%89%80%E7%A1%AE%E5%AE%9A%E7%9A%84%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E8%A1%8C%E9%83%BD%E8%A2%AB%E6%89%93%E5%8D%B0%EF%BC%9A"><span class="nav-text">所有在模板test和check所确定的范围内的行都被打印：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E4%BB%8E%E7%AC%AC5%E8%A1%8C%E5%BC%80%E5%A7%8B%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%85%E5%90%AB%E4%BB%A5test%E5%BC%80%E5%A7%8B%E7%9A%84%E8%A1%8C%E4%B9%8B%E9%97%B4%E7%9A%84%E6%89%80%E6%9C%89%E8%A1%8C%EF%BC%9A"><span class="nav-text">打印从第5行开始到第一个包含以test开始的行之间的所有行：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E6%A8%A1%E6%9D%BFtest%E5%92%8Cwest%E4%B9%8B%E9%97%B4%E7%9A%84%E8%A1%8C%EF%BC%8C%E6%AF%8F%E8%A1%8C%E7%9A%84%E6%9C%AB%E5%B0%BE%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2aaa-bbb%E6%9B%BF%E6%8D%A2%EF%BC%9A"><span class="nav-text">对于模板test和west之间的行，每行的末尾用字符串aaa bbb替换：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%82%B9%E7%BC%96%E8%BE%91%EF%BC%9Ae%E5%91%BD%E4%BB%A4"><span class="nav-text">多点编辑：e命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#e%E9%80%89%E9%A1%B9%E5%85%81%E8%AE%B8%E5%9C%A8%E5%90%8C%E4%B8%80%E8%A1%8C%E9%87%8C%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">-e选项允许在同一行里执行多条命令：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8A%E9%9D%A2sed%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E5%88%A0%E9%99%A41%E8%87%B35%E8%A1%8C%EF%BC%8C%E7%AC%AC%E4%BA%8C%E6%9D%A1%E5%91%BD%E4%BB%A4%E7%94%A8check%E6%9B%BF%E6%8D%A2test%E3%80%82%E5%91%BD%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E5%AF%B9%E7%BB%93%E6%9E%9C%E6%9C%89%E5%BD%B1%E5%93%8D%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%A4%E4%B8%AA%E5%91%BD%E4%BB%A4%E9%83%BD%E6%98%AF%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%EF%BC%8C%E9%82%A3%E4%B9%88%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%B0%86%E5%BD%B1%E5%93%8D%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E7%9A%84%E7%BB%93%E6%9E%9C%E3%80%82"><span class="nav-text">上面sed表达式的第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%92%8C-e-%E7%AD%89%E4%BB%B7%E7%9A%84%E5%91%BD%E4%BB%A4%E6%98%AF-%E2%80%93expression%EF%BC%9A"><span class="nav-text">和 -e 等价的命令是 –expression：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%96%87%E4%BB%B6%E8%AF%BB%E5%85%A5%EF%BC%9Ar%E5%91%BD%E4%BB%A4"><span class="nav-text">从文件读入：r命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#file%E9%87%8C%E7%9A%84%E5%86%85%E5%AE%B9%E8%A2%AB%E8%AF%BB%E8%BF%9B%E6%9D%A5%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%9C%A8%E4%B8%8Etest%E5%8C%B9%E9%85%8D%E7%9A%84%E8%A1%8C%E5%90%8E%E9%9D%A2%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8C%B9%E9%85%8D%E5%A4%9A%E8%A1%8C%EF%BC%8C%E5%88%99file%E7%9A%84%E5%86%85%E5%AE%B9%E5%B0%86%E6%98%BE%E7%A4%BA%E5%9C%A8%E6%89%80%E6%9C%89%E5%8C%B9%E9%85%8D%E8%A1%8C%E7%9A%84%E4%B8%8B%E9%9D%A2%EF%BC%9A"><span class="nav-text">file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%9Aw%E5%91%BD%E4%BB%A4"><span class="nav-text">写入文件：w命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8example%E4%B8%AD%E6%89%80%E6%9C%89%E5%8C%85%E5%90%ABtest%E7%9A%84%E8%A1%8C%E9%83%BD%E8%A2%AB%E5%86%99%E5%85%A5file%E9%87%8C%EF%BC%9A"><span class="nav-text">在example中所有包含test的行都被写入file里：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E5%8A%A0%EF%BC%88%E8%A1%8C%E4%B8%8B%EF%BC%89%EF%BC%9Aa-%E5%91%BD%E4%BB%A4"><span class="nav-text">追加（行下）：a\命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86-this-is-a-test-line-%E8%BF%BD%E5%8A%A0%E5%88%B0-%E4%BB%A5test-%E5%BC%80%E5%A4%B4%E7%9A%84%E8%A1%8C%E5%90%8E%E9%9D%A2%EF%BC%9A"><span class="nav-text">将 this is a test line 追加到 以test 开头的行后面：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8-test-conf-%E6%96%87%E4%BB%B6%E7%AC%AC2%E8%A1%8C%E4%B9%8B%E5%90%8E%E6%8F%92%E5%85%A5-this-is-a-test-line%EF%BC%9A"><span class="nav-text">在 test.conf 文件第2行之后插入 this is a test line：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%EF%BC%88%E8%A1%8C%E4%B8%8A%EF%BC%89%EF%BC%9Ai-%E5%91%BD%E4%BB%A4"><span class="nav-text">插入（行上）：i\命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86-this-is-a-test-line-%E8%BF%BD%E5%8A%A0%E5%88%B0%E4%BB%A5test%E5%BC%80%E5%A4%B4%E7%9A%84%E8%A1%8C%E5%89%8D%E9%9D%A2%EF%BC%9A"><span class="nav-text">将 this is a test line 追加到以test开头的行前面：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8test-conf%E6%96%87%E4%BB%B6%E7%AC%AC5%E8%A1%8C%E4%B9%8B%E5%89%8D%E6%8F%92%E5%85%A5this-is-a-test-line%EF%BC%9A"><span class="nav-text">在test.conf文件第5行之前插入this is a test line：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E4%B8%AA%EF%BC%9An%E5%91%BD%E4%BB%A4"><span class="nav-text">下一个：n命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E6%9E%9Ctest%E8%A2%AB%E5%8C%B9%E9%85%8D%EF%BC%8C%E5%88%99%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%8C%B9%E9%85%8D%E8%A1%8C%E7%9A%84%E4%B8%8B%E4%B8%80%E8%A1%8C%EF%BC%8C%E6%9B%BF%E6%8D%A2%E8%BF%99%E4%B8%80%E8%A1%8C%E7%9A%84aa%EF%BC%8C%E5%8F%98%E4%B8%BAbb%EF%BC%8C%E5%B9%B6%E6%89%93%E5%8D%B0%E8%AF%A5%E8%A1%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E7%BB%A7%E7%BB%AD%EF%BC%9A"><span class="nav-text">如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E5%BD%A2%EF%BC%9Ay%E5%91%BD%E4%BB%A4"><span class="nav-text">变形：y命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%8A1-10%E8%A1%8C%E5%86%85%E6%89%80%E6%9C%89abcde%E8%BD%AC%E5%8F%98%E4%B8%BA%E5%A4%A7%E5%86%99%EF%BC%8C%E6%B3%A8%E6%84%8F%EF%BC%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%83%E5%AD%97%E7%AC%A6%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">把1~10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BA%EF%BC%9Aq%E5%91%BD%E4%BB%A4"><span class="nav-text">退出：q命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E5%AE%8C%E7%AC%AC10%E8%A1%8C%E5%90%8E%EF%BC%8C%E9%80%80%E5%87%BAsed"><span class="nav-text">打印完第10行后，退出sed</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E5%92%8C%E8%8E%B7%E5%8F%96%EF%BC%9Ah%E5%91%BD%E4%BB%A4%E5%92%8CG%E5%91%BD%E4%BB%A4"><span class="nav-text">保持和获取：h命令和G命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8sed%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%AF%8F%E4%B8%80%E8%A1%8C%E9%83%BD%E8%A2%AB%E4%BF%9D%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%8F%AB%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E4%B8%B4%E6%97%B6%E7%BC%93%E5%86%B2%E5%8C%BA%E4%B8%AD%EF%BC%8C%E9%99%A4%E9%9D%9E%E8%A1%8C%E8%A2%AB%E5%88%A0%E9%99%A4%E6%88%96%E8%80%85%E8%BE%93%E5%87%BA%E8%A2%AB%E5%8F%96%E6%B6%88%EF%BC%8C%E5%90%A6%E5%88%99%E6%89%80%E6%9C%89%E8%A2%AB%E5%A4%84%E7%90%86%E7%9A%84%E8%A1%8C%E9%83%BD%E5%B0%86-%E6%89%93%E5%8D%B0%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E3%80%82%E6%8E%A5%E7%9D%80%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%E8%A2%AB%E6%B8%85%E7%A9%BA%EF%BC%8C%E5%B9%B6%E5%AD%98%E5%85%A5%E6%96%B0%E7%9A%84%E4%B8%80%E8%A1%8C%E7%AD%89%E5%BE%85%E5%A4%84%E7%90%86%E3%80%82"><span class="nav-text">在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E8%BF%99%E4%B8%AA%E4%BE%8B%E5%AD%90%E9%87%8C%EF%BC%8C%E5%8C%B9%E9%85%8Dtest%E7%9A%84%E8%A1%8C%E8%A2%AB%E6%89%BE%E5%88%B0%E5%90%8E%EF%BC%8C%E5%B0%86%E5%AD%98%E5%85%A5%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%EF%BC%8Ch%E5%91%BD%E4%BB%A4%E5%B0%86%E5%85%B6%E5%A4%8D%E5%88%B6%E5%B9%B6%E5%AD%98%E5%85%A5%E4%B8%80%E4%B8%AA%E7%A7%B0%E4%B8%BA%E4%BF%9D%E6%8C%81%E7%BC%93%E5%AD%98%E5%8C%BA%E7%9A%84%E7%89%B9%E6%AE%8A%E7%BC%93%E5%86%B2%E5%8C%BA%E5%86%85%E3%80%82%E7%AC%AC%E4%BA%8C%E6%9D%A1%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%84%8F%E6%80%9D%E6%98%AF%EF%BC%8C%E5%BD%93%E5%88%B0%E8%BE%BE%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%90%8E%EF%BC%8CG%E5%91%BD%E4%BB%A4%E5%8F%96%E5%87%BA%E4%BF%9D%E6%8C%81%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E8%A1%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8A%8A%E5%AE%83%E6%94%BE%E5%9B%9E%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%8C%E4%B8%94%E8%BF%BD%E5%8A%A0%E5%88%B0%E7%8E%B0%E5%9C%A8%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E4%BA%8E%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E8%A1%8C%E7%9A%84%E6%9C%AB%E5%B0%BE%E3%80%82%E5%9C%A8%E8%BF%99%E4%B8%AA%E4%BE%8B%E5%AD%90%E4%B8%AD%E5%B0%B1%E6%98%AF%E8%BF%BD%E5%8A%A0%E5%88%B0%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E3%80%82%E7%AE%80%E5%8D%95%E6%9D%A5%E8%AF%B4%EF%BC%8C%E4%BB%BB%E4%BD%95%E5%8C%85%E5%90%ABtest%E7%9A%84%E8%A1%8C%E9%83%BD%E8%A2%AB%E5%A4%8D%E5%88%B6%E5%B9%B6%E8%BF%BD%E5%8A%A0%E5%88%B0%E8%AF%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%9C%AB%E5%B0%BE%E3%80%82"><span class="nav-text">在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E5%92%8C%E4%BA%92%E6%8D%A2%EF%BC%9Ah%E5%91%BD%E4%BB%A4%E5%92%8Cx%E5%91%BD%E4%BB%A4"><span class="nav-text">保持和互换：h命令和x命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%92%E6%8D%A2%E6%A8%A1%E5%BC%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E4%BF%9D%E6%8C%81%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%8A%8A%E5%8C%85%E5%90%ABtest%E4%B8%8Echeck%E7%9A%84%E8%A1%8C%E4%BA%92%E6%8D%A2%EF%BC%9A"><span class="nav-text">互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%ACscriptfile"><span class="nav-text">脚本scriptfile</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sed%E8%84%9A%E6%9C%AC%E6%98%AF%E4%B8%80%E4%B8%AAsed%E7%9A%84%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95%EF%BC%8C%E5%90%AF%E5%8A%A8Sed%E6%97%B6%E4%BB%A5-f%E9%80%89%E9%A1%B9%E5%BC%95%E5%AF%BC%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E5%90%8D%E3%80%82Sed%E5%AF%B9%E4%BA%8E%E8%84%9A%E6%9C%AC%E4%B8%AD%E8%BE%93%E5%85%A5%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9D%9E%E5%B8%B8%E6%8C%91%E5%89%94%EF%BC%8C%E5%9C%A8%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9C%AB%E5%B0%BE%E4%B8%8D%E8%83%BD%E6%9C%89%E4%BB%BB%E4%BD%95%E7%A9%BA%E7%99%BD%E6%88%96%E6%96%87%E6%9C%AC%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%9C%A8%E4%B8%80%E8%A1%8C%E4%B8%AD%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%91%BD%E4%BB%A4%EF%BC%8C%E8%A6%81%E7%94%A8%E5%88%86%E5%8F%B7%E5%88%86%E9%9A%94%E3%80%82%E4%BB%A5-%E5%BC%80%E5%A4%B4%E7%9A%84%E8%A1%8C%E4%B8%BA%E6%B3%A8%E9%87%8A%E8%A1%8C%EF%BC%8C%E4%B8%94%E4%B8%8D%E8%83%BD%E8%B7%A8%E8%A1%8C%E3%80%82"><span class="nav-text">sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以#开头的行为注释行，且不能跨行。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E5%A5%87%E6%95%B0%E8%A1%8C%E6%88%96%E5%81%B6%E6%95%B0%E8%A1%8C"><span class="nav-text">打印奇数行或偶数行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A"><span class="nav-text">方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%952%EF%BC%9A"><span class="nav-text">方法2：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%8B%E4%B8%80%E8%A1%8C"><span class="nav-text">打印匹配字符串的下一行</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Allen Shaw</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 18 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">Github 驱动</span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+	<div id="aplayer"></div>
+
+<script src="/js/build/libs/APlayer.min.js"></script>
+
+
+<script src="/js/build/plugins/aplayer.js"></script>
+
+
+	
+</body>
+
+</html>

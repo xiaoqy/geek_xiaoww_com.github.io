@@ -1,0 +1,79 @@
+.post-image-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(85px, 1fr));
+    gap: 4px; /* 图片之间的间距 */
+    justify-items: center;
+}
+
+.post-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 强制正方形 */
+    object-fit: cover; /* 裁切多余内容保持图片填满 */
+    border-radius: 0; /* 可根据需要调整圆角 */
+    display: block;
+}
+
+.post-video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.post-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.live-photo {
+    display: grid;
+    width: 100%;
+    /* 移除固定高度，使用最小高度以适应内容 */
+    min-height: 200px;
+    margin: 10px 0;
+    /* 响应式网格：支持多张 Live Photo，自动调整列数 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    justify-items: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* 针对 Live Photo 组件的样式 */
+.live-photo [data-live-photo] {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 宽高比，可根据实际 Live Photo 比例调整 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* 圆角提升美感 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+    background-color: #f0f0f0; /* 加载时的背景色 */
+}
+
+/* 确保内部图片和视频自适应 */
+.live-photo [data-live-photo] img,
+.live-photo [data-live-photo] video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 填充容器，裁剪多余部分 */
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .live-photo {
+        grid-template-columns: 1fr; /* 移动端单列 */
+        gap: 8px;
+        margin: 8px 0;
+        padding: 8px;
+    }
+
+    .live-photo [data-live-photo] {
+        padding-bottom: 66.67%; /* 移动端可选调整为 3:2 比例 */
+    }
+}

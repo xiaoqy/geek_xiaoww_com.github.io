@@ -1,0 +1,44 @@
+.announcement-bar {
+    background-color: #FFFF99;
+    margin: 20px auto 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+    color: #000;
+    position: static;
+    width: 95%;
+    box-sizing: border-box;
+    box-shadow: 5px 10px 5px 1px rgba(0, 0, 0, .2);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    display: static;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.announcement-content {
+    flex: 1;
+}
+
+#closeButton {
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    background: transparent;
+    border: none;
+}
+
+.bottom-fill {
+    position: relative;
+    display: flex;
+    width: 102%;
+    height: 35px;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    margin: 0 auto;
+    transform: translateY(5px);
+    background: white;
+}
