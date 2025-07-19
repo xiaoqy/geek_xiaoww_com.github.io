@@ -2,17 +2,17 @@
 img {
     /* pointer-events: none; 禁用图片的鼠标/触摸事件 */
     /* user-select: none; 禁止选中图片 */
-    -webkit-touch-callout: none; /* iOS 禁用长按菜单 */
+    /* -webkit-touch-callout: none; iOS 禁用长按菜单 */
     /* -webkit-user-select: none; 禁止 iOS 选中 */
     /* -moz-user-select: none; 禁止 Firefox 选中 */
     /* -ms-user-select: none; 禁止 IE 选中 */
 }
 
 /* 禁止图片拖拽 */
-/* img {
+img {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
     user-drag: none;
-} */
+}
