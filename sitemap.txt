@@ -21,11 +21,11 @@ https://mirror.geek.xiaoww.com/tags/index.html
 https://mirror.geek.xiaoww.com/masonry/index.html
 https://mirror.geek.xiaoww.com/categories/index.html
 https://mirror.geek.xiaoww.com/
-https://mirror.geek.xiaoww.com/tags/Centos/
 https://mirror.geek.xiaoww.com/tags/Linux/
+https://mirror.geek.xiaoww.com/tags/Centos/
 https://mirror.geek.xiaoww.com/tags/GCC/
-https://mirror.geek.xiaoww.com/tags/MariaDB/
 https://mirror.geek.xiaoww.com/tags/Nginx/
+https://mirror.geek.xiaoww.com/tags/MariaDB/
 https://mirror.geek.xiaoww.com/tags/PHP/
 https://mirror.geek.xiaoww.com/tags/Aliyun/
 https://mirror.geek.xiaoww.com/tags/AlibabaCloud/

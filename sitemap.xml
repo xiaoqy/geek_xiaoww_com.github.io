@@ -209,14 +209,14 @@
 
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Centos/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Linux/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Linux/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Centos/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -230,14 +230,14 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Nginx/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Nginx/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
