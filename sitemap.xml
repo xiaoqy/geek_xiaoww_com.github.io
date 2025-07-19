@@ -223,14 +223,14 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/PHP/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/GCC/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/GCC/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -244,14 +244,7 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/MySQL/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/PHP/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -272,6 +265,13 @@
   </url>
   
   <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/MySQL/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mirror.geek.xiaoww.com/tags/NOTEPAD/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -280,6 +280,34 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/Terminal/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/Shell/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/%E7%BB%88%E7%AB%AF/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/Command/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -314,28 +342,21 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Terminal/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Typecho/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Shell/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/%E5%9F%9F%E5%90%8D/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/%E7%BB%88%E7%AB%AF/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Command/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Grub/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -371,27 +392,6 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/%E7%9B%B4%E6%92%AD%E6%BA%90/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Typecho/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/%E5%9F%9F%E5%90%8D/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Grub/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
