@@ -22,6 +22,50 @@ document.addEventListener('copy', function (event) {
     }
 });
 
+// 检测开发者工具
+(function() {
+  let devtoolsOpen = false;
+  const threshold = 160;
+  window.addEventListener('devtoolschange', function(e) {
+    devtoolsOpen = e.detail.isOpen;
+    if (devtoolsOpen) {
+        document.documentElement.innerHTML = '';
+        window.location.href = 'about:blank';
+        // document.write("<style>@media print{body{display:none}}</style>");
+        
+        // 初始状态
+        history.pushState(null, document.title, window.location.href);
+
+        // 监听popstate事件（用户点击了后退按钮）
+        window.addEventListener('popstate', function (event) {
+          history.pushState(null, document.title, window.location.href = 'about:blank');
+        });
+
+        alert('请关闭开发者工具！');
+        document.body.style.filter = 'blur(5px)';
+    }
+  });
+
+  setInterval(() => {
+    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+        document.documentElement.innerHTML = '';
+        window.location.href = 'about:blank';
+        // document.write("<style>@media print{body{display:none}}</style>");
+        
+        // 初始状态
+        history.pushState(null, document.title, window.location.href);
+
+        // 监听popstate事件（用户点击了后退按钮）
+        window.addEventListener('popstate', function (event) {
+          history.pushState(null, document.title, window.location.href = 'about:blank');
+        });
+
+        alert('检测到开发者工具，请关闭！');
+        document.body.style.filter = 'blur(5px)';
+    }
+  }, 1000);
+})();
+
 // 监听按键
 document.onkeydown = function () {
   // f12
