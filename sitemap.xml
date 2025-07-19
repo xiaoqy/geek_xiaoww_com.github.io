@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mirror.geek.xiaoww.com/web-protection/</loc>
+    
+    <lastmod>2025-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mirror.geek.xiaoww.com/picgo-blog-image-hosting-aliyun-oss/</loc>
     
     <lastmod>2025-06-02</lastmod>
@@ -230,14 +239,14 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Nginx/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/MariaDB/</loc>
+    <loc>https://mirror.geek.xiaoww.com/tags/Nginx/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
