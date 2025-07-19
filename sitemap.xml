@@ -307,13 +307,6 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Command/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mirror.geek.xiaoww.com/tags/PicGo/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -342,6 +335,13 @@
   </url>
   
   <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/Command/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mirror.geek.xiaoww.com/tags/Typecho/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -357,6 +357,13 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/Grub/</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/VIM/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -392,13 +399,6 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/%E7%9B%B4%E6%92%AD%E6%BA%90/</loc>
-    <lastmod>2025-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/VIM/</loc>
     <lastmod>2025-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

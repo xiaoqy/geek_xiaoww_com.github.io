@@ -37,7 +37,7 @@ document.addEventListener('copy', function (event) {
 });
 
 // 检测开发者工具
-const threshold = 200;
+const threshold = 320;
 setInterval(() => {
     if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
         document.documentElement.innerHTML = '';
