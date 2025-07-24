@@ -253,13 +253,6 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/PHP/</loc>
-    <lastmod>2025-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mirror.geek.xiaoww.com/tags/Aliyun/</loc>
     <lastmod>2025-07-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -268,6 +261,13 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/AlibabaCloud/</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/PHP/</loc>
     <lastmod>2025-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -316,20 +316,6 @@
   </url>
   
   <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/Typecho/</loc>
-    <lastmod>2025-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mirror.geek.xiaoww.com/tags/%E5%9F%9F%E5%90%8D/</loc>
-    <lastmod>2025-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mirror.geek.xiaoww.com/tags/PicGo/</loc>
     <lastmod>2025-07-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -359,6 +345,20 @@
   
   <url>
     <loc>https://mirror.geek.xiaoww.com/tags/Command/</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/Typecho/</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mirror.geek.xiaoww.com/tags/%E5%9F%9F%E5%90%8D/</loc>
     <lastmod>2025-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
