@@ -2,22 +2,6 @@
   if (window.__webProtectionInjected) return;
   window.__webProtectionInjected = true;
 
-  document.onselectstart = function(){ return false; }; // 禁止文字选择
-  document.oncut = function(){
-    Swal.fire({ position: "top-end", icon: "warning", title: "本站禁止剪切！", timer: 2000, timerProgressBar: true, showConfirmButton: false });
-    return false; 
-  };
-
-  document.oncopy = function(){
-    Swal.fire({ position: "top-end", icon: "warning", title: "本站禁止复制！", timer: 2000, timerProgressBar: true, showConfirmButton: false });
-    return false;
-  };
-
-  document.oncontextmenu = function(){
-    Swal.fire({ position: "top-end", icon: "warning", title: "本站禁止右键菜单！", timer: 2000, timerProgressBar: true, showConfirmButton: false });
-    return false;
-  };
-
   document.addEventListener('contextmenu', (event) => {
     if (event.target.tagName === 'IMG') {
       event.preventDefault();
