@@ -6,7 +6,7 @@
   <link href="https://mirror.geek.xiaoww.com/atom.xml" rel="self"/>
   
   <link href="https://mirror.geek.xiaoww.com/"/>
-  <updated>2025-07-19T12:18:59.517Z</updated>
+  <updated>2025-07-26T02:24:01.579Z</updated>
   <id>https://mirror.geek.xiaoww.com/</id>
   
   <author>
@@ -15,6 +15,102 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>探索神奇的无线电</title>
+    <link href="https://mirror.geek.xiaoww.com/posts/exploring-the-magic-of-radio/"/>
+    <id>https://mirror.geek.xiaoww.com/posts/exploring-the-magic-of-radio/</id>
+    <published>2025-07-26T02:24:01.756Z</published>
+    <updated>2025-07-26T02:24:01.579Z</updated>
+    
+    <content type="html"><![CDATA[<p>在我小时候时，大概在十年前，家常住农村地区，我自己所使用的是山寨手机，属于 MRP 平台的，国内普遍的手机（包括国产的贴牌、杂牌、品牌，已及数量极其庞大的其它山寨机都带有这个平台)，比 JAVA 手机还要低端。网络也就只能勉强用 2G 上网，可以上网冲浪查资料，如果做其它事情就会非常缓慢。</p><p>有一天在赶集日，我在小学校园附近街边上发现一家数码杂货实体店，纯粹好奇想进去看看或者买点什么有趣的东西。店内售卖着各种磁带收录机和收音机，MP3，MP4，DVD 影碟机，视频播放机，音响和功放设备等。我购买了最廉价的指针式收音机，花了大概 20 元。这样无聊的时候可以随时拿出来听听。这个基本只能听调频广播，按钮极其的少，所有频率调节都是通过右侧的飞梭（旋钮），缺点就是无法滤除干扰信号，没有变频和DSP 数字信号处理，从开始到结尾都是模拟信号。</p><p>在购买第二台收音机之前，我的灵感来自于对超声波、次声波、光波、微波、高低频信号、慢扫描电视、天线振子、红外、噪声、波长、波段、波形、辐射、共振和频率等，也对天波和地波以及直线波传播途径的初步了解，让我产生了一些兴趣爱好。我在 4 月 12 日我购买了第二台，品牌我选择的是国产的德生，因为它是做收音机起家的，型号是 PL330 ，最适合新手入门的使用，支持全波段（调频、调幅、短波、中波、长波、单边带），单边带包括上边带（USB）与下边带（LSB），支持同步检波，二次变频，DSP 数字信号处理，单频率存储，ETM 时段频率存储，自动搜台等。它的下一个版本德生 PL320 去除了单边带功能和优化了一些功能，但我最终选择了旧版。</p><p>不过网上有很多自己做矿石收音机和使用开源项目 DIY 收音机的，这个我就不多追溯了。</p><p>在这段时间里，我发现了比收音机可玩性更高的来了，这种想法也许我很早就遇到过，它就是 SDR（软件定义无线电），而收音机都是指的 HDR（硬件定义无线电），应用范围就有非常大的差距，SDR 就是基于通用的硬件平台上用软件来实现各种通信模块，所有调制与解调、信号增益、噪声处理、带宽调整、频谱分析等，信号完全由电脑软件来处理，或者手机端、网页端、单片机、开发板来操作控制。这样可以实现超宽频谱可视化，也可对多信号进行录制和射频重放，同时收听多个频率，信号多人共享等。</p><p>于此之外，我们还需要了解带宽、灵敏度、ADC、过载、动态范围、图像混叠、噪声干扰、射频滤波、预选中心、直流尖峰、相位噪声等实现原理和实现过程。未来还需做充分的实验，会用到高压发生器、等离子体、线圈、开关电源、线性电源、高频电容、高频电感、示波器、遥控装置、物联网设备、矢量网络分析仪、变压器、逆变器、ZVS 电路等，还得阅读一些无线电和电子工程学的知识书籍。</p><p>电磁波是由电场和磁场相互垂直并同时变化的波动，可以在真空中传播，也可以在其他介质中传播。无线电波是电磁波的一种，用于无线电通信。</p><p>无线电传播方式可以比作是，将低频的音频信号转换成高频信号，通过导线发射出去，这称之为调制，高频中可带任何低频信号或其它信息，以高频作为载体。解调是把接收到的高频信号转成低频信号，高频作为载体，将高频信号过滤掉，只拿到主要的低频信号，这样就可以正常播放声音了。这就相当于盒子效应。</p><p>天波（Sky Wave）<br>天波是指那些通过大气层，尤其是电离层反射或折射传播的无线电波。它们可以传输很远的距离，因为电离层可以将无线电波反射回地球表面。天波在到达电离层时，会被电离层中的电离粒子反射或折射，然后返回地面。这一过程可以重复多次，使无线电波传播非常远的距离。能接收全球的信号，这有时还要看天气和大气层的影响，通常晚上效果会更好。在雨天信号容易出现散射，也可达到理想效果。</p><p>地波（Ground Wave）<br>地波是指那些沿着地球表面传播的无线电波。地波在接近地面的位置传播，受到地面特性的影响。地波是通过表面波，沿着地球表面传播，并受地表的导电性和地形影响。频率越低，地波传播的距离越远。</p><p>直射波（Straight Wave）</p><p>直射波又称为空间波，是由发射点从空间直线传播到接收点的无线电波。直射波传播距离一般限于视距范围。在传播过程中，它的强度衰减较慢。中间可由多个进行信号中继转发，也有发射到卫星，再通过卫星中继转发射到地面。</p><p>从传播手段看，广播分两大类：<br>①通过无线电波传送节目的，称为无线广播； ②通过导线传送节目的，称为有线广播。<br>从传播媒介看，广播也可分为两大类：<br>①仅仅传送声音的，称为声音广播，简称广播；②传送声音、图像的，称为电视广播。<br>从广播信号的调制方式分为：调频(FM)广播与调幅(AM)广播两种。<br>从使用的无线电波段分为：长波(LW)、中波(MW)、短波(SW)和超短波。<br>目前，长波、中波、短波广播使用的均为调幅模式；调频广播使用的是超短波波段。</p><p>根据情况选择合适的天线，每种天线有着不同的频段接收范围，即使有些收音机不能实现其它高低频段接收，都可以通过不同的天线来解决，可搭配变频滤波器来调整信噪比来抵制外部干扰。天线一般分大环天线、磁环天线、八木天线、偶极天线、拉杆天线（垂直天线），部分天线具有方向性，也有全向性。天线结构通常有：引向单元（引向器）、反射单元、激励单元、天线振子，还有一些绝缘环部分，这里我就不多追溯了。</p><p>应用领域</p><p>业余无线电：在业余无线电爱好者中非常受欢迎，提供了灵活和强大的通信手段。语音通信、数据通信、无线电测向、卫星通信等</p><p>广播接收：可以用来接收各种类型的广播信号，包括调频广播（FM）、中波广播（AM）和短波广播。</p><p>气象卫星接收：可以接收气象卫星的信号，用于获取卫星图像和气象数据。</p><p>安全和监控：在安全监控领域用于频谱监测和信号拦截，帮助检测和分析无线电信号。频谱监测、信号拦截、无线电频率干扰检测</p><p>无线电天文：在无线电天文学中用于接收和分析来自宇宙的无线电信号，研究天体物理现象。</p><p>无线网络研究：在无线网络研究中用于开发和测试新的无线通信协议和技术。5G 网络研究、Wi-Fi 信号分析、无线通信协议开发</p><p>教育和研究：是教育和研究领域的重要工具，帮助学生和研究人员学习和实验无线电通信技术。</p><p>航空和海事通信：在航空和海事通信中用于接收和解码飞机和船只的通信信号。</p><p>卫星通信：用于接收和解码各种卫星通信信号，包括业余卫星和商用卫星。</p><p>另外，无线电爱好者操作员是分业余无线电和专业无线电。</p><p>尽管名为「业余」，但这并不意味着业余无线电是「不专业」的。它更像是一个「民用」的概念，一个让普通人也能享受到科技乐趣的平台。</p><p>业余无线电爱好者自称为 HAM，他们使用自己的无线电设备，在法律划分的电波频段内进行各种活动，如语音通话，发无线电报，发摩尔斯电码，讨论技术，甚至进行通联竞赛。这些活动虽然纯属个人爱好，但每一个 HAM 都是严格遵守规则的，不能以盈利为目的。</p><p>我个人一般用作：信号干扰实验研究，信号调试与解调，电磁电路板干扰分析、WIFI、基站、GPS、微波、天线信号分析等。也会用于模拟电视接收，航空频率，军事频率，以及早期的摩尔斯电码，慢扫描电视，气象云图，手台（对讲机 &#x2F; 手持电台），台式收发信机（台式电台）接收，频谱图信号分析。</p><p>无线电通信模式<br>语音通信模式</p><p>AM（幅度调制）：常用于中波广播、短波广播。<br>FM（频率调制）：常用于调频广播、业余无线电VHF和UHF频段。<br>SSB（单边带调制）：用于长距离通信，效率高，常见于短波业余无线电。<br>NFM（窄带频率调制）：用于商用对讲机、业余无线电、公共安全通信。<br>数据通信模式</p><p>CW（连续波&#x2F;摩尔斯码）：早期的无线电通信模式，仍在业余无线电中使用。<br>RTTY（无线电电传打字）：用于数据传输，早期电报系统。<br>PSK31（相位偏移键控）：窄带数据通信模式，常用于业余无线电。<br>FT8、FT4：数字通信模式，适用于低信噪比环境，常用于业余无线电。<br>APRS（自动位置报告系统）：用于位置和数据传输，常用于业余无线电。<br>视频通信模式</p><p>ATV（业余电视）：模拟电视广播，使用业余无线电频段。<br>DATV（数字业余电视）：数字电视广播，使用业余无线电频段。</p><p>对于专业的软硬件无线电设备口碑不错的品牌与型号：</p><p>ICOM IC-7300、IC-7851、IC-R9500（收发信机）；Kenwood TS-990S、TS-2000（收发信机）；FlexRadio（SDR 收发信机）；RTL-SDR；AirSpy；SDRPlay；Hackrf One；ATS25 AMP、ATS120、德生 PL330、PL880、德劲、八重洲等。</p><p>最后介绍 ICOM 和 FlexRadio 两款品牌用途：</p><p>ICOM 适合那些喜欢传统操作界面和物理控制的用户，产品线丰富，集成度高。</p><p>FlexRadio 则更适合追求高性能和灵活性的用户，尤其是那些需要远程操作和愿意通过软件定义无线电技术来扩展设备功能的用户。</p><p>FlexRadio 的可玩性比 ICOM 更高，适合高端无线电爱好者。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在我小时候时，大概在十年前，家常住农村地区，我自己所使用的是山寨手机，属于 MRP 平台的，国内普遍的手机（包括国产的贴牌、杂牌、品牌，已及数量极其庞大的其它山寨机都带有这个平台)，比 JAVA 手机还要低端。网络也就只能勉强用 2G 上网，可以上网冲浪查资料，如果做其它事</summary>
+      
+    
+    
+    
+    <category term="兴趣" scheme="https://mirror.geek.xiaoww.com/categories/%E5%85%B4%E8%B6%A3/"/>
+    
+    
+    <category term="业余无线电" scheme="https://mirror.geek.xiaoww.com/tags/%E4%B8%9A%E4%BD%99%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    <category term="无线电" scheme="https://mirror.geek.xiaoww.com/tags/%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    <category term="硬件定义无线电" scheme="https://mirror.geek.xiaoww.com/tags/%E7%A1%AC%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    <category term="软件定义无线电" scheme="https://mirror.geek.xiaoww.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    <category term="收音机" scheme="https://mirror.geek.xiaoww.com/tags/%E6%94%B6%E9%9F%B3%E6%9C%BA/"/>
+    
+    <category term="电台" scheme="https://mirror.geek.xiaoww.com/tags/%E7%94%B5%E5%8F%B0/"/>
+    
+    <category term="手台" scheme="https://mirror.geek.xiaoww.com/tags/%E6%89%8B%E5%8F%B0/"/>
+    
+    <category term="对讲机" scheme="https://mirror.geek.xiaoww.com/tags/%E5%AF%B9%E8%AE%B2%E6%9C%BA/"/>
+    
+    <category term="收信机" scheme="https://mirror.geek.xiaoww.com/tags/%E6%94%B6%E4%BF%A1%E6%9C%BA/"/>
+    
+    <category term="收发信机" scheme="https://mirror.geek.xiaoww.com/tags/%E6%94%B6%E5%8F%91%E4%BF%A1%E6%9C%BA/"/>
+    
+    <category term="接收机" scheme="https://mirror.geek.xiaoww.com/tags/%E6%8E%A5%E6%94%B6%E6%9C%BA/"/>
+    
+    <category term="广播" scheme="https://mirror.geek.xiaoww.com/tags/%E5%B9%BF%E6%92%AD/"/>
+    
+    <category term="调制与解调" scheme="https://mirror.geek.xiaoww.com/tags/%E8%B0%83%E5%88%B6%E4%B8%8E%E8%A7%A3%E8%B0%83/"/>
+    
+    <category term="信号" scheme="https://mirror.geek.xiaoww.com/tags/%E4%BF%A1%E5%8F%B7/"/>
+    
+    <category term="频率" scheme="https://mirror.geek.xiaoww.com/tags/%E9%A2%91%E7%8E%87/"/>
+    
+    <category term="电磁波" scheme="https://mirror.geek.xiaoww.com/tags/%E7%94%B5%E7%A3%81%E6%B3%A2/"/>
+    
+    <category term="数字信号" scheme="https://mirror.geek.xiaoww.com/tags/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7/"/>
+    
+    <category term="模拟信号" scheme="https://mirror.geek.xiaoww.com/tags/%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7/"/>
+    
+    <category term="模拟电视" scheme="https://mirror.geek.xiaoww.com/tags/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%A7%86/"/>
+    
+    <category term="数字电视" scheme="https://mirror.geek.xiaoww.com/tags/%E6%95%B0%E5%AD%97%E7%94%B5%E8%A7%86/"/>
+    
+    <category term="长波" scheme="https://mirror.geek.xiaoww.com/tags/%E9%95%BF%E6%B3%A2/"/>
+    
+    <category term="中波" scheme="https://mirror.geek.xiaoww.com/tags/%E4%B8%AD%E6%B3%A2/"/>
+    
+    <category term="短波" scheme="https://mirror.geek.xiaoww.com/tags/%E7%9F%AD%E6%B3%A2/"/>
+    
+    <category term="超短波" scheme="https://mirror.geek.xiaoww.com/tags/%E8%B6%85%E7%9F%AD%E6%B3%A2/"/>
+    
+    <category term="天波" scheme="https://mirror.geek.xiaoww.com/tags/%E5%A4%A9%E6%B3%A2/"/>
+    
+    <category term="地波" scheme="https://mirror.geek.xiaoww.com/tags/%E5%9C%B0%E6%B3%A2/"/>
+    
+    <category term="直线波" scheme="https://mirror.geek.xiaoww.com/tags/%E7%9B%B4%E7%BA%BF%E6%B3%A2/"/>
+    
+    <category term="调频" scheme="https://mirror.geek.xiaoww.com/tags/%E8%B0%83%E9%A2%91/"/>
+    
+    <category term="调幅" scheme="https://mirror.geek.xiaoww.com/tags/%E8%B0%83%E5%B9%85/"/>
+    
+    <category term="调谐" scheme="https://mirror.geek.xiaoww.com/tags/%E8%B0%83%E8%B0%90/"/>
+    
+    <category term="微波" scheme="https://mirror.geek.xiaoww.com/tags/%E5%BE%AE%E6%B3%A2/"/>
+    
+    <category term="波长" scheme="https://mirror.geek.xiaoww.com/tags/%E6%B3%A2%E9%95%BF/"/>
+    
+    <category term="波段" scheme="https://mirror.geek.xiaoww.com/tags/%E6%B3%A2%E6%AE%B5/"/>
+    
+    <category term="干扰" scheme="https://mirror.geek.xiaoww.com/tags/%E5%B9%B2%E6%89%B0/"/>
+    
+    <category term="辐射" scheme="https://mirror.geek.xiaoww.com/tags/%E8%BE%90%E5%B0%84/"/>
+    
+    <category term="噪声" scheme="https://mirror.geek.xiaoww.com/tags/%E5%99%AA%E5%A3%B0/"/>
+    
+    <category term="频谱" scheme="https://mirror.geek.xiaoww.com/tags/%E9%A2%91%E8%B0%B1/"/>
+    
+  </entry>
   
   <entry>
     <title>网页安全保护</title>
