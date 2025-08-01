@@ -1,2 +1,18 @@
+# robots.txt for mirror.geek.xiaoww.com
+# Last updated date: 2025-08-02
+# Creator: Allen Shaw
+# Mail: ixiaoqy@gmail.com
+# Function description: This file is used to control search engine access permissions
+
 User-agent: *
-Disallow:
+Disallow: /archives/
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /masonry/
+Disallow: /shuoshuo/
+Disallow: /tv/
+Disallow: /book/
+Disallow: /about/
+
+Sitemap: https://mirror.geek.xiaoww.com/sitemap.xml
+Sitemap: https://mirror.geek.xiaoww.com/baidusitemap.xml
