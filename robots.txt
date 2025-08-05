@@ -1,5 +1,5 @@
 # robots.txt for mirror.geek.xiaoww.com
-# Last updated date: 2025-08-02
+# Last updated date: 2025-08-05
 # Creator: Allen Shaw
 # Mail: ixiaoqy@gmail.com
 # Function description: This file is used to control search engine access permissions
@@ -14,29 +14,23 @@ Disallow: /tv/
 Disallow: /book/
 Disallow: /about/
 Disallow: /assets/
+Disallow: /page/
 Disallow: /css/
 Disallow: /js/
 Disallow: /images/
 Disallow: /fonts/
 Disallow: /webfonts/
-Disallow: /vendors/
 Disallow: /fancybox/
-Disallow: /page/
+Disallow: /vendors/
 Disallow: /schedule/
 Disallow: /search.json
-Disallow: /admin/
-Disallow: /wp-admin/
 Disallow: /atom.xml
 Disallow: /rss2.xml
 Disallow: /404.html
-Disallow: /wp-*
 Disallow: /\?p=*
 Disallow: /*?*
 Disallow: /?s=
 Disallow: /?p=
-Allow: /sitemap.xml
-
-# Block AI crawlers and SEO crawlers
 
 User-agent: AhrefsBot
 Disallow: /
